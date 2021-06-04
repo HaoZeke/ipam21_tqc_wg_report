@@ -1,0 +1,114 @@
+#+TITLE: Tensor Methods in Quantum Chemistry
+#+SUBTITLE: An IPAM 2021 working group report
+#+AUTHOR: Rohit Goswami
+#+OPTIONS: toc:t \n:nil enable-local-variables:t
+#+STARTUP: fninline
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: wgtex
+#+LATEX_HEADER: \setlength\parindent{0pt}
+#+LATEX_HEADER: \addbibresource{wgtex.bib}
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
+#+LATEX_HEADER: \usepackage{wrapfig}
+#+LATEX_HEADER: \usepackage[font={small}]{caption}
+
+# From https://tex.stackexchange.com/questions/101157/how-to-create-this-cover-page
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \renewcommand{\maketitle}{%
+#+LATEX_HEADER:     \begin{tikzpicture}[remember picture, overlay]
+#+LATEX_HEADER:         % Gray boundary
+#+LATEX_HEADER:         \node (left) at (current page.west)
+#+LATEX_HEADER:               [rectangle, fill=gray, inner sep=0pt, anchor = west,
+#+LATEX_HEADER:                minimum width=2cm, minimum height=1\paperheight]{};
+#+LATEX_HEADER:         % Red boundary
+#+LATEX_HEADER:         \node (bottom) at (current page.south)
+#+LATEX_HEADER:               [rectangle, fill=BrickRed, inner sep=0 pt, anchor=south,
+#+LATEX_HEADER:                minimum width=1\paperwidth, minimum height=0.5cm]{};
+#+LATEX_HEADER:
+#+LATEX_HEADER:         % Some additional stuff:
+#+LATEX_HEADER:         \node [yshift=\paperheight/3] (middle) at (current page.south)
+#+LATEX_HEADER:               [rectangle, fill=Green, inner sep=0pt, anchor=north west,
+#+LATEX_HEADER:                minimum height=3cm, minimum width=0.25\paperwidth]{};
+#+LATEX_HEADER:         \node [yshift=\paperheight/3] (middle) at (current page.south)
+#+LATEX_HEADER:               [rectangle, fill=BrickRed, inner sep=0pt, anchor=north east,
+#+LATEX_HEADER:                minimum height=3cm, minimum width=0.25\paperwidth]{};
+#+LATEX_HEADER:         \node [yshift=\paperheight/3] (middle) at (current page.south)
+#+LATEX_HEADER:               [rectangle, fill=Goldenrod, inner sep=0pt, anchor=south west,
+#+LATEX_HEADER:                minimum height=3cm, minimum width=0.25\paperwidth]{};
+#+LATEX_HEADER:         \node [yshift=\paperheight/3] (middle) at (current page.south)
+#+LATEX_HEADER:               [rectangle, fill=RoyalBlue, inner sep=0pt, anchor=south east,
+#+LATEX_HEADER:                minimum height=3cm, minimum width=0.25\paperwidth]{};
+#+LATEX_HEADER:     \end{tikzpicture}
+#+LATEX_HEADER:     \thispagestyle{empty}
+#+LATEX_HEADER:     \parindent0pt
+#+LATEX_HEADER:
+#+LATEX_HEADER:     \begin{addmargin}{4em}
+#+LATEX_HEADER:         \vspace{4cm}
+#+LATEX_HEADER:         {\huge\usekomafont{title} \@title}
+#+LATEX_HEADER:
+#+LATEX_HEADER:         \vspace{2cm}
+#+LATEX_HEADER:         {\usekomafont{disposition}\Large \@author}
+#+LATEX_HEADER:     \end{addmargin}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \makeatother
+
+#+BEGIN_SRC emacs-lisp :exports none  :results none :eval always
+;; Details of this method: https://rgoswami.me/posts/org-arb-tex
+(add-to-list 'org-latex-classes
+             '("wgtex" "\\documentclass{wgtex}"
+               ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+(setq org-latex-packages-alist 'nil)
+(setq org-latex-minted-options 'nil)
+
+(setq org-latex-default-packages-alist
+  '(
+    (""     "graphicx"  t)
+    (""     "lipsum"  t)
+;; Extra
+;;    (""     "minted"   t)
+    (""     "rotating"  nil)
+    ("normalem" "ulem"  t)
+    (""     "mathtools"   t)
+    ))
+#+END_SRC
+
+* Introduction
+** Basics
+#+begin_export latex
+\lipsum[2]
+#+end_export
+
+Now we can test some code:
+#+begin_src python :eval never :export code
+import antigravity
+print 'Hello world Hello world'
+#+end_src
+
+#+begin_export latex
+\begin{equationB}[The Landau-Lifshitz-Gilbert (LLG) equation]\index{Equation of motion}
+\begin{align*}
+ \frac{d\mathbf{m}_i}{dt}=-\frac{\gamma}{1+\alpha^2} \mathbf{m}_i \times [\mathbf{B}_{i}+\mathbf{b}_{i}(t)]-\frac{\gamma}{m_i} \frac{\alpha}{1+\alpha^2} \mathbf{m}_i \times (\mathbf{m}_i \times [\mathbf{B}_{i}+\mathbf{b}_{i}(t)])
+%
+\end{align*}
+\label{eq:sllg}
+\end{equationB}
+#+end_export
+
+
+*** Future
+* Outlook
+
+#+BEGIN_EXPORT latex
+\newpage
+\printbibliography[title=Bibliography]
+#+END_EXPORT
+
+# Local Variables:
+# before-save-hook: org-babel-execute-buffer
+# after-save-hook: haozeke/org-save-and-export-latex
+# End:
