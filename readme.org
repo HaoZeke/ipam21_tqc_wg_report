@@ -1,0 +1,2 @@
+* About
+This repository comprises of the sources and generation techniques for an IPAM working group on Tensor Methods in Quantum Chemistry. This work was undertaken over the course of the IPAM 2021 long program on tensor methods and emerging applications to the physical and data sciences.
