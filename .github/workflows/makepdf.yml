@@ -1,0 +1,33 @@
+name: Build PDF
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          submodules: "recursive" # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Install package
+        run: |
+          sudo apt-get -y texlive python-pygments
+
+      - name: Build
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: src/wgtqc.tex
+          latexmk_use_xelatex: true
+          latexmk_shell_escape: true
+
+      - name: Deploy
+        uses: actions/upload-artifact@v2
+        with:
+          name: PDF
+          path: src/wgtqc.pdf
