@@ -3,6 +3,46 @@
 #+AUTHOR: Rohit Goswami
 #+OPTIONS: toc:t \n:nil enable-local-variables:t
 #+STARTUP: fninline
+#+EXCLUDE_TAGS: noexport
+
+* Configuration :ignoreheading:ignore:
+  :PROPERTIES:
+  :VISIBILITY: folded
+  :END:
+#+BEGIN_SRC emacs-lisp :exports none :eval always
+(require 'ox-extra)
+(ox-extras-activate '(ignore-headlines))
+#+END_SRC
+
+#+RESULTS:
+
+** Theme :ignoreheading:ignore:
+#+BEGIN_SRC emacs-lisp :exports none  :results none :eval always
+;; Details of this method: https://rgoswami.me/posts/org-arb-tex
+(add-to-list 'org-latex-classes
+             '("wgtex" "\\documentclass{wgtex}"
+               ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+(setq org-latex-packages-alist 'nil)
+(setq org-latex-minted-options 'nil)
+(setq org-latex-listings 'minted)
+(setq org-latex-default-packages-alist
+  '(
+    (""     "graphicx"  t)
+    (""     "lipsum"  t)
+;; Extra
+;;    (""     "minted"   t)
+    (""     "rotating"  nil)
+    ("normalem" "ulem"  t)
+    (""     "mathtools"   t)
+    ))
+#+END_SRC
+
+*** TeX activation :ignoreheading:ignore:
 #+LATEX_COMPILER: xelatex
 #+LATEX_CLASS: wgtex
 #+LATEX_HEADER: \setlength\parindent{0pt}
@@ -12,6 +52,7 @@
 #+LATEX_HEADER: \usepackage{wrapfig}
 #+LATEX_HEADER: \usepackage[font={small}]{caption}
 
+** Cover Page :ignoreheading:ignore:
 # From https://tex.stackexchange.com/questions/101157/how-to-create-this-cover-page
 #+LATEX_HEADER: \makeatletter
 #+LATEX_HEADER: \renewcommand{\maketitle}{%
@@ -52,41 +93,17 @@
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \makeatother
 
-#+BEGIN_SRC emacs-lisp :exports none  :results none :eval always
-;; Details of this method: https://rgoswami.me/posts/org-arb-tex
-(add-to-list 'org-latex-classes
-             '("wgtex" "\\documentclass{wgtex}"
-               ("\\chapter{%s}" . "\\chapter*{%s}")
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-(setq org-latex-packages-alist 'nil)
-(setq org-latex-minted-options 'nil)
-
-(setq org-latex-default-packages-alist
-  '(
-    (""     "graphicx"  t)
-    (""     "lipsum"  t)
-;; Extra
-;;    (""     "minted"   t)
-    (""     "rotating"  nil)
-    ("normalem" "ulem"  t)
-    (""     "mathtools"   t)
-    ))
-#+END_SRC
-
+* Start Here :ignoreheading:ignore:
 * Introduction
 ** Basics
 #+begin_export latex
-\lipsum[2]
+\lipsum[2-3]
 #+end_export
 
 Now we can test some code:
 #+begin_src python :eval never :export code
 import antigravity
-print 'Hello world Hello world'
+print 'Hello world Hello world Hello world Hello world Hello world Hello world'
 #+end_src
 
 #+begin_export latex
@@ -98,9 +115,6 @@ print 'Hello world Hello world'
 \label{eq:sllg}
 \end{equationB}
 #+end_export
-
-
-*** Future
 * Outlook
 
 #+BEGIN_EXPORT latex
@@ -108,6 +122,10 @@ print 'Hello world Hello world'
 \printbibliography[title=Bibliography]
 #+END_EXPORT
 
+* Local Variables :ignoreheading:ignore:
+  :PROPERTIES:
+  :VISIBILITY: folded
+  :END:
 # Local Variables:
 # before-save-hook: org-babel-execute-buffer
 # after-save-hook: haozeke/org-save-and-export-latex
