@@ -32,8 +32,15 @@ jobs:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
 
+      - name: Move pdf
+        run: |
+          mkdir pdfdir
+          mv src/wgtqc.pdf pdfdir/wgtqc.pdf
+
       - name: Deploy pdf
-        uses: actions/upload-artifact@v2
+        uses: peaceiris/actions-gh-pages@v3.8.0
         with:
-          name: PDF
-          path: src/wgtqc.pdf
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: pdf
+          publish_dir: ./pdfdir
+          force_orphan: true
