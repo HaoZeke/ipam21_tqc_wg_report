@@ -47,7 +47,7 @@
 #+LATEX_COMPILER: xelatex
 #+LATEX_CLASS: wgtex
 #+LATEX_HEADER: \setlength\parindent{0pt}
-#+LATEX_HEADER: \addbibresource{wgtex.bib}
+#+LATEX_HEADER: \addbibresource{ipam21tqc.bib}
 #+LATEX_HEADER: \usepackage{enumitem}
 #+LATEX_HEADER: \setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
 #+LATEX_HEADER: \usepackage{wrapfig}
@@ -97,11 +97,56 @@
 * Start Here :ignoreheading:ignore:
 * Context
 ** Scope
-Rather than begin on a traditional introduction, we will start out by describing the context in which we are to cover the rest of this report.
-The broader context of this working group is to gain a broad understanding of the use (and abuse) of tensor methods in quantum chemistry.
-There is a lack of coherent material accessible to members of the community. In particular, though there has been a proliferation of user-friendly black box methods, there are few, if any strategies to bring researchers to a point where they are able to meaningfully contribute in a sustainable way to a software ecosystem.
+The broader context of this working group is to gain a broad understanding of
+the use (and abuse) of tensor methods in quantum chemistry.  There is a lack of
+coherent material accessible to members of the community. In particular, though
+there has been a proliferation of user-friendly black box methods, there are
+few, if any strategies to bring researchers to a point where they are able to
+meaningfully contribute in a sustainable way to a software ecosystem.
 
-We divide a problem into the physical model and it's numerical representation, followed by an approximation. This is the traditional approach which ignores the structure of programming.
+Computational simulations have gained prominence as a third pillar of scientific
+exploration, supplementing theory and experiment
+cite:strangComputationalScienceEngineering2007,allenComputerSimulationLiquids2017.
+For any given problem, the interplay between forming a theoretical model
+consistent with experimental evidence is now augmented by numerical methods.
+Numerical methods have risen to greater prominence due to their ability to
+provide efficient models from large datasets (big-data and machine learning
+models) however, in the physical sciences, they are of greater importance than
+facilitating glorified fitting procedures. In quantum chemistry, computational
+methods have been able to provide quantitative values (occasionally) at par with
+experimental methods, heralding the "third age of quantum chemistry"
+cite:schaeferMethyleneParadigmComputational1986.
+
+An often overlooked aspect of the modeling process, involves the numerical
+approximations and software implementation approaches to computational quantum
+chemistry. Unlike theoretical results, or even experiments, more often than not
+computational studies are not held to the same level of rigorous
+reproducibility. Computational studies are often nigh impossible to replicate
+due to the large amount of computational resources and time required. This,
+coupled with the proliferation of commercial or simply closed source codes are
+key drivers cite:pengReproducibleResearchComputational2011. The reproducibility crisis in computational quantum chemistry is
+slowly being acknowledged
+cite:rangelReproducibilityG0W0Calculations2020,lejaeghereReproducibilityDensityFunctional2016
+and can only be exacerbated by the unfocused implementation of further numerical
+methods.
+
+Concurrently, the advent of computational methods has highlighted the lack of
+communication between various scientific disciplines. Code in this sense
+functions as an equalizer, allowing for a unified understanding of the nature in
+which algorithms used in widely differing contexts can be in fact, similar in
+implementation. As a relevant example, alternating least squares, used for
+recommendation systems in the data-science literature shares much of its core
+(numerical) concepts with the density matrix renormalization group method used
+for obtaining ground state energies and observables from quantum systems.
+
+** Quantum Chemistry
+Quantum chemistry as will be used in this report can be understood as the
+formulation of electronic structure problems for systems corresponding to real
+materials.
+
+** Tensors
+The most well known applications of tensor methods in the context of quantum
+chemistry have traditionally been cite:chanDensityMatrixRenormalization2011
 # ** Basics
 # #+begin_export latex
 # \lipsum[2-3]
@@ -123,15 +168,32 @@ We divide a problem into the physical model and it's numerical representation, f
 # \end{equationB}
 # #+end_export
 * Implementations
+** Algorithms
 ** Languages and DSLs
-One of the common concerns
-it isn’t really that these ideas are new, but they suffer from bitrot over time. BLOCK is now meant to be used as a black box, and the source is not distributed on Github; similarly, the Quantum Chemistry version of CTF, aquarius has also suffered from a lack of development. CTF is reasonably well developed, but it has fallen behind in terms of speed compared to the later stage libraries like the tensorflow accelerated opt einsum
-** Cathedrals in Quantum Chemistry
+The idea of forming programming languages which maximally combine expert knowledge with performance oriented low level code is the basis of rationalizing the existence of Domain Specific Languages (DSLs).
+It is not really that these ideas are new, but they suffer from bitrot over time. BLOCK is now meant to be used as a black box, and the source is not distributed on Github; similarly, the Quantum Chemistry version of CTF, aquarius has also suffered from a lack of development. CTF is reasonably well developed, but it has fallen behind in terms of speed compared to the later stage libraries like the tensorflow accelerated opt einsum
+** Quantum Chemistry Software
 Quantum chemistry has suffered for many years as a retarded child of computer science in terms of the communal adoption of closed source tools which can be traced back to the original sin of Gaussian going closed source. Lately, there has been a slight re calibration of the community’s moral compass in a positive sense, and several previously closed source packages have become open-source (e.g. the GAP potentials, d-SEAMS, lammps, gromacs).
+*** Tensor Implementations
+** Tensor Libraries
+** High Performance Computing Considerations
 * Conclusions
-** Group Outputs
+** Goals and Outputs
+Given the scope defined in Section [[Scope]] and the asynchronous nature of the program, the goals were set in accordance to their discussion in the report.
+*** Goals
+Primarily, the working group focused on the following:
+- Reconciliation of concepts between disciplines
+  - Cross pollination of gainful concepts
+- Understanding code structures and implementation methods
+  - Scalability, interoperability with mathematical models, and documentation
+  - Performance bottlenecks
+  - Programming language considerations
+- Identification of future directions and current challenges
+- and the unique (virtual) circumstances under which the IPAM program involved
+workflows towards the mitigation of the same.
+
 ** Outlook
-The purpose of outlining a grand unifying plan is to encourage the community to partake in its eventual sucess. We emphasize that the time has passed for disparate groups to struggle in closed source developments. Inclusive authorship like the NWChem paper is a laudable and achievable goal as a community. The recent sucesses of for-profit companies like Google and their ilk in academic arenas should further serve as a wakeup call; it is only in their ability to connect working scientists of various disciplines have their sucesses been assured.
+The purpose of outlining a grand unifying plan is to encourage the community to partake in its eventual success. We emphasize that the time has passed for disparate groups to struggle in closed source developments. Inclusive authorship like the NWChem paper is a laudable and achievable goal as a community. The recent successes of for-profit companies like Google and their ilk in academic arenas should further serve as a wake-up call; it is only in their ability to connect working scientists of various disciplines have their successes been assured.
 GPAW holds monthly developer meetings, Stan likewise has developer hours, as do DeepChem and some other; however, these are still currently few and far apart. Contrary to some beliefs, these have not diluted the ability of the steering groups nor swamped the communities with frivolous demands. Recently, even the Fortran steering committee has opened a public forum (in the form of the J3 proposals repository) to bring more of the community into the decision making process. Computational chemistry, once one of the early adopters of the net has fallen behind, and it can only be hoped that programs like those held at IPAM will be able to stem the flow of bad practices and secrecy.
 
 DMRG, ALS, these are bulletproof, concrete ideas, which need to be merged with the nebulous lexicon of quantum chemistry. Many avenues are unexplored, relativistic qc, electrostatics. Outlook, they're powerful, expressive tools which need to be coerced into the qc lexicon for efficient use.
