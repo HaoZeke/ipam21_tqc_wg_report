@@ -15,6 +15,20 @@
 ;;; Code:
 
 (require 'ox-latex)
+; Getting org-ref
+;; MELPA setup and initial packages
+(package-initialize)
+(require 'package)
+(add-to-list 'package-archives
+    '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(dolist (package '(use-package))
+   (unless (package-installed-p package)
+       (package-install package)))
+
+(use-package org-ref
+   :ensure t)
+;; Got org-ref
 (add-to-list 'org-latex-classes
              '("wgtex" "\\documentclass{wgtex}"
                ("\\part{%s}" . "\\part*{%s}")
