@@ -21,6 +21,7 @@
 ;; Details of this method: https://rgoswami.me/posts/org-arb-tex
 (add-to-list 'org-latex-classes
              '("wgtex" "\\documentclass{wgtex}"
+               ("\\part{%s}" . "\\part*{%s}")
                ("\\chapter{%s}" . "\\chapter*{%s}")
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
@@ -94,29 +95,48 @@
 #+LATEX_HEADER: \makeatother
 
 * Start Here :ignoreheading:ignore:
-* Introduction
-** Basics
-#+begin_export latex
-\lipsum[2-3]
-#+end_export
+* Context
+** Scope
+Rather than begin on a traditional introduction, we will start out by describing the context in which we are to cover the rest of this report.
+The broader context of this working group is to gain a broad understanding of the use (and abuse) of tensor methods in quantum chemistry.
+There is a lack of coherent material accessible to members of the community. In particular, though there has been a proliferation of user-friendly black box methods, there are few, if any strategies to bring researchers to a point where they are able to meaningfully contribute in a sustainable way to a software ecosystem.
 
-Now we can test some code:
-#+begin_src python :eval never :export code
-import antigravity
-print 'Hello world Hello world Hello world Hello world Hello world Hello world'
-#+end_src
+We divide a problem into the physical model and it's numerical representation, followed by an approximation. This is the traditional approach which ignores the structure of programming.
+# ** Basics
+# #+begin_export latex
+# \lipsum[2-3]
+# #+end_export
 
-#+begin_export latex
-\begin{equationB}[The Landau-Lifshitz-Gilbert (LLG) equation]\index{Equation of motion}
-\begin{align*}
- \frac{d\mathbf{m}_i}{dt}=-\frac{\gamma}{1+\alpha^2} \mathbf{m}_i \times [\mathbf{B}_{i}+\mathbf{b}_{i}(t)]-\frac{\gamma}{m_i} \frac{\alpha}{1+\alpha^2} \mathbf{m}_i \times (\mathbf{m}_i \times [\mathbf{B}_{i}+\mathbf{b}_{i}(t)])
-%
-\end{align*}
-\label{eq:sllg}
-\end{equationB}
-#+end_export
-* Outlook
+# Now we can test some code:
+# #+begin_src python :eval never :export code
+# import antigravity
+# print 'Hello world Hello world Hello world Hello world Hello world Hello world'
+# #+end_src
 
+# #+begin_export latex
+# \begin{equationB}[The Landau-Lifshitz-Gilbert (LLG) equation]\index{Equation of motion}
+# \begin{align*}
+#  \frac{d\mathbf{m}_i}{dt}=-\frac{\gamma}{1+\alpha^2} \mathbf{m}_i \times [\mathbf{B}_{i}+\mathbf{b}_{i}(t)]-\frac{\gamma}{m_i} \frac{\alpha}{1+\alpha^2} \mathbf{m}_i \times (\mathbf{m}_i \times [\mathbf{B}_{i}+\mathbf{b}_{i}(t)])
+# %
+# \end{align*}
+# \label{eq:sllg}
+# \end{equationB}
+# #+end_export
+* Implementations
+** Languages and DSLs
+One of the common concerns
+it isn’t really that these ideas are new, but they suffer from bitrot over time. BLOCK is now meant to be used as a black box, and the source is not distributed on Github; similarly, the Quantum Chemistry version of CTF, aquarius has also suffered from a lack of development. CTF is reasonably well developed, but it has fallen behind in terms of speed compared to the later stage libraries like the tensorflow accelerated opt einsum
+** Cathedrals in Quantum Chemistry
+Quantum chemistry has suffered for many years as a retarded child of computer science in terms of the communal adoption of closed source tools which can be traced back to the original sin of Gaussian going closed source. Lately, there has been a slight re calibration of the community’s moral compass in a positive sense, and several previously closed source packages have become open-source (e.g. the GAP potentials, d-SEAMS, lammps, gromacs).
+* Conclusions
+** Group Outputs
+** Outlook
+The purpose of outlining a grand unifying plan is to encourage the community to partake in its eventual sucess. We emphasize that the time has passed for disparate groups to struggle in closed source developments. Inclusive authorship like the NWChem paper is a laudable and achievable goal as a community. The recent sucesses of for-profit companies like Google and their ilk in academic arenas should further serve as a wakeup call; it is only in their ability to connect working scientists of various disciplines have their sucesses been assured.
+GPAW holds monthly developer meetings, Stan likewise has developer hours, as do DeepChem and some other; however, these are still currently few and far apart. Contrary to some beliefs, these have not diluted the ability of the steering groups nor swamped the communities with frivolous demands. Recently, even the Fortran steering committee has opened a public forum (in the form of the J3 proposals repository) to bring more of the community into the decision making process. Computational chemistry, once one of the early adopters of the net has fallen behind, and it can only be hoped that programs like those held at IPAM will be able to stem the flow of bad practices and secrecy.
+
+DMRG, ALS, these are bulletproof, concrete ideas, which need to be merged with the nebulous lexicon of quantum chemistry. Many avenues are unexplored, relativistic qc, electrostatics. Outlook, they're powerful, expressive tools which need to be coerced into the qc lexicon for efficient use.
+
+* Bibliography :ignoreheading:ignore:
 #+BEGIN_EXPORT latex
 \newpage
 \printbibliography[title=Bibliography]
@@ -128,5 +148,5 @@ print 'Hello world Hello world Hello world Hello world Hello world Hello world'
   :END:
 # Local Variables:
 # before-save-hook: org-babel-execute-buffer
-# after-save-hook: haozeke/org-save-and-export-latex
+# after-save-hook: (lambda () (org-latex-export-to-latex) t)
 # End:
