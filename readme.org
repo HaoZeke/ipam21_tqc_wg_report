@@ -2,6 +2,7 @@
 This repository comprises of the sources and generation techniques for an IPAM working group on Tensor Methods in Quantum Chemistry. This work was undertaken over the course of the IPAM 2021 long program on tensor methods and emerging applications to the physical and data sciences.
 
 - The compiled [[https://github.com/HaoZeke/ipam21_tqc_wg_report/blob/pdf/wgtqc.pdf][pdf can be viewed here]]
+  - It is automatically built on each push
 ** Contributing
 Please make changes in a PR to the ~org~ file. Some notes:
 - We use ~biblatex~
