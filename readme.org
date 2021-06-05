@@ -1,2 +1,9 @@
 * About
 This repository comprises of the sources and generation techniques for an IPAM working group on Tensor Methods in Quantum Chemistry. This work was undertaken over the course of the IPAM 2021 long program on tensor methods and emerging applications to the physical and data sciences.
+** Compiling
+** Contributing
+Please make changes in a PR to either the ~tex~ file or the ~org~ file (preferred).
+** Acknowledgments
+*** Template
+The template is a variant of the LaTeX [[https://www.latextemplates.com/template/the-legrand-orange-book][Legrand Orange Book]]. The base template is inspired liberally by the [[https://github.com/UppASD/UppASD/blob/master/docs/UppASDmanual.pdf][UppASD manual]].
+The generation of this workflow is [[https://rgoswami.me/posts/org-arb-tex/][detailed here]].
