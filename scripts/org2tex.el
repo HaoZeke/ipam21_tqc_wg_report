@@ -19,7 +19,11 @@
 ;; MELPA setup and initial packages
 (require 'package)
 (setq package-check-signature nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(setq  package-archives
+ '(("org" . "http://orgmode.org/elpa/")
+   ("melpa" . "https://melpa.org/packages/")
+   ("marmalade" . "https://marmalade-repo.org/packages/")
+   ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 (unless package-archive-contents   (package-refresh-contents))
 (package-install 'use-package)
