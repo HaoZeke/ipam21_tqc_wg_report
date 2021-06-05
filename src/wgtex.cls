@@ -25,10 +25,12 @@
 \RequirePackage[usenames,dvipsnames]{xcolor}
 \RequirePackage{pgffor}
 \RequirePackage{tikz}
-\RequirePackage[style=alphabetic,%
-citestyle=numeric,%
-sorting=nyt,%
-sortcites=true,%
+\RequirePackage[%
+style=numeric,
+% style=alphabetic,%
+% citestyle=numeric,%
+% sorting=nyt,%
+% sortcites=true,%
 autopunct=true,%
 babel=hyphen,%
 hyperref=true,%
