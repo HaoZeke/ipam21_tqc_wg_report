@@ -21,7 +21,7 @@ jobs:
 
       - name: Generate TeX
         run: |
-          emacs --script scripts/org2tex.el src/wgtqc.org
+          emacs -q -nl --script scripts/org2tex.el src/wgtqc.org
 
       - name: Build pdf
         uses: xu-cheng/latex-action@v2

@@ -17,10 +17,12 @@
 (require 'ox-latex)
 ; Getting org-ref
 ;; MELPA setup and initial packages
-(package-initialize)
 (require 'package)
-(add-to-list 'package-archives
-    '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(setq package-check-signature nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+(unless package-archive-contents   (package-refresh-contents))
+(package-install 'use-package)
 
 (dolist (package '(use-package))
    (unless (package-installed-p package)
