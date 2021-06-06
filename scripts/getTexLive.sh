@@ -42,7 +42,6 @@ tlmgr install   \
   pdflatex      \
   latexmk       \
   etoolbox      \
-  lmodern       \
   minted        \
   texliveonfly  \
   baskervaldx   \
