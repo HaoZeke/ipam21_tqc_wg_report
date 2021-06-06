@@ -179,8 +179,10 @@ This is often understood as being the sum of terms, namely (in order) the kineti
 
 While details may be found in the standard literature cite:lewarsComputationalChemistry2016,cramerEssentialsComputationalChemistry2004,jensenIntroductionComputationalChemistry2017,szaboModernQuantumChemistry1996, typical approximations
 involve being able to consider the nuclei to be "clamped" (the Born-Oppenheimer
-assumption) and the adiabatic assumption which assumes that the resultant energy
-surface can be described in terms of one electron operators. This allows us separate the nuclear (constant at a fixed geometry) and the electronic parts of the Hamiltonian as cite:schaeferQuantumChemistryDevelopment1984:
+assumption) and the adiabatic assumption (electronic motions follow the nuclei
+-- timescale separation). This allows us separate the nuclear (constant at a
+fixed geometry) and the electronic parts of the Hamiltonian as
+cite:schaeferQuantumChemistryDevelopment1984:
 
 #+begin_export latex
 \begin{equationB}[Total energy after BO and adiabatic approximations]
@@ -222,8 +224,23 @@ mesh-less methods are more common compared to the gird methods, however, for
 tensor applications textcite:khoromskaiaTensorNumericalMethods2018 demonstrate
 the superiority of using grids.
 
-For an understanding of the mesh-free methods we consider the typical example of
-the Hydrogen molecule.
+**** Linear Combination of Atomic Orbitals (LCAO)
+For an understanding of the mesh-free methods the LCAO framework
+(cite:dewarLCAOMOTheory1971 demonstrates this pedagogically for $H₂$). The LCAO
+asserts that a molecular wave function can be written in terms of a linear
+combination of a atomic orbitals, and each electron in the system can be
+described by a single one electron wave function (the orbital approximation).
+This neglects both static and dynamic correlations.
+
+*** Second Quantization
+Most of the quantum chemistry literature
+cite:szaboModernQuantumChemistry1996,cramerEssentialsComputationalChemistry2004,jensenIntroductionComputationalChemistry2017
+(cite:helgakerMolecularElectronicstructureTheory2000 is an exception) is
+formulated in terms of wavefunctions, and with little reference to the discretized
+second quantization formulation. Tensor networks and their studies pertaining to
+the physical sciences are typically described in terms of the second
+quantization formalism. This has bleed into the code structures as well, which
+will have consequences discussed in a later section.
 ** Tensors
 # ** Basics
 # #+begin_export latex
