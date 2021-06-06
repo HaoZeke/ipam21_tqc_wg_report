@@ -142,10 +142,12 @@ for obtaining ground state energies and observables from quantum systems.
 ** Quantum Chemistry
 Quantum chemistry as will be used in this report can be understood as the
 formulation of electronic structure problems for systems corresponding to real
-materials. The starting point for such a discussion can be completely pragmatic,
-taking a classical Hamiltonian and "quantizing" it with the transform of the
-momentum. A slightly more rational explanation (following cite:yamaguchiNewDimensionQuantum1994) begins with writing the molecular
-non-relativistic Schrödinger equation.
+materials. To keep the report to a manageable length we will neglect any
+discussion of density functional theory in this section. The starting point for
+such a discussion can be completely pragmatic, taking a classical Hamiltonian
+and "quantizing" it with the transform of the momentum. A slightly more rational
+explanation (following cite:yamaguchiNewDimensionQuantum1994) begins with
+writing the molecular non-relativistic Schrödinger equation.
 
 #+begin_export latex
 \begin{equationB}[Molecular Non-relativistic Schrödinger]
@@ -206,6 +208,9 @@ Where we have used the one electron operator $\mathbf{h}(i)$:
 \end{equationB}
 #+end_export
 
+The second term in $\mathbf{H}_{elec}$ is often written (under the
+approximations considered) in terms of the coulomb ($J$) and exchange ($K$)
+integrals as $∑ᵢᴺ∑_{j>i}ᴺ(J_{ij}-K_{ij})$ cite:jensenIntroductionComputationalChemistry2017.
 Relativistic effects and the Dirac equation are not considered
 here, though they are known to account for anomalous observations in systems
 with heavy elements (e.g. group 12 dimethyl metal-carbon bond lengths, p block
@@ -216,7 +221,7 @@ hypersurface which is defined by the potential energy of atoms over all possible
 arrangements cite:cramerEssentialsComputationalChemistry2004. Describing this surface efficiently (a sampling problem) and subsequently forming (minimum energy) paths (a global
 optimization problem) are the bedrock of a large segment of quantum chemistry
 applications.
-*** Solutions
+
 Methods of solving the equations described can be divided into the standard two
 forms of treating partial differential equations numerically, that is by
 considering a real space grid and mesh-less methods. In quantum chemistry, the
@@ -224,14 +229,104 @@ mesh-less methods are more common compared to the gird methods, however, for
 tensor applications textcite:khoromskaiaTensorNumericalMethods2018 demonstrate
 the superiority of using grids.
 
-**** Linear Combination of Atomic Orbitals (LCAO)
+*** Linear Combination of Atomic Orbitals (LCAO)
 For an understanding of the mesh-free methods the LCAO framework
-(cite:dewarLCAOMOTheory1971 demonstrates this pedagogically for $H₂$). The LCAO
+(textcite:dewarLCAOMOTheory1971 demonstrates this pedagogically for $H₂$). The LCAO
 asserts that a molecular wave function can be written in terms of a linear
 combination of a atomic orbitals, and each electron in the system can be
 described by a single one electron wave function (the orbital approximation).
-This neglects both static and dynamic correlations.
+This neglects both static and dynamic correlations. The spin orbitals
+(one-electron wave functions) are composed of three continuous variables for
+space, and one spin parameter which is discrete and can take only two values
+(often written as $𝛼$ and $𝛽$). However, the consideration of spin orbitals and
+their product (known as the Hartree Product
+cite:szaboModernQuantumChemistry1996) does not account for Pauli's principle,
+that is, there are no restrictions on regarding the manner in which the spin
+orbitals combine to form a molecular orbital and thus it fails for any system of
+more than one electron. With the neglect of correlations,
+we are able to separate the spin orbitals into spatial and spin segments. For
+the Hydrogen molecule, we have two electrons and two protons which implies
+twelve coordinates for the four particles, notwithstanding spin. In this
+situation, we can write the spin orbital as $𝜓ᵢ𝜎ₛ$ where $𝜓$ is the spatial
+portion of the orbital $x,y,z$ and $𝜎$ is the spin portion. A trial form of the
+wave-function which satisfies the Pauli principle can be constructed by
+expressing the molecular wavefunction as a normalized determinant composed of
+spin orbitals, and this is the Slater determinant. In a multi-particle system it
+is written as:
 
+#+begin_export latex
+\begin{equationB}[Multi-particle Slater determinant]
+\begin{equation}
+\begin{aligned}
+ \Psi(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N) &=
+  \frac{1}{\sqrt{N!}}
+  \begin{vmatrix} \psi_1(\mathbf{x}_1) & \psi_2(\mathbf{x}_1) & \cdots & \psi_N(\mathbf{x}_1) \\
+                      \psi_1(\mathbf{x}_2) & \psi_2(\mathbf{x}_2) & \cdots & \psi_N(\mathbf{x}_2) \\
+                      \vdots & \vdots & \ddots & \vdots \\
+                      \psi_1(\mathbf{x}_N) & \psi_2(\mathbf{x}_N) & \cdots & \psi_N(\mathbf{x}_N)
+  \end{vmatrix} \\
+ &\equiv | \psi _1, \psi _2, \cdots, \psi _N \rangle \\
+ &\equiv | 1, 2, \dots, N \rangle
+\end{aligned}
+\end{equation}
+\end{equationB}
+#+end_export
+
+Although this form of the wavefunction is often taken to be the starting point
+from which further corrections are derived, it should be emphasized that this is
+still an ansatz, and other valid guesses for the wavefunction are equally valid.
+
+The final approximation before obtaining the molecular wavefunction is to expand
+the spatial orbitals as linear combinations of basis set functions which in
+turn are often considered to be the self consistent field atomic orbitals of
+individual atoms.
+*** Configuration Interaction
+We can obtain the effects of electron correlation in some sense by requiring a
+solution in the form of a combination of slater determinants (distributing
+electrons across various molecular orbitals) instead of a single slater
+determinant. This is the underlying concept behind the configuration interaction
+methods and these are based on the variational principle; aside from which they
+are formulated in a manner analogous to the Hartree-Fock equations
+cite:jensenIntroductionComputationalChemistry2017. We can write the wavefunction
+as a linear combination of determinants, and the molecular orbitals used for the
+exited Slater determinants are from a Hartree-Fock calculation. These orbitals
+are then fixed, which makes this a constrained optimization problem. Formally,
+we have cite:jensenIntroductionComputationalChemistry2017:
+#+begin_export latex
+\begin{equationB}[Configuration interaction wavefunction]
+\begin{equation}
+𝛹_{CI}=a₀𝛷_{HF}+∑_{S}a_{S}𝛷_{S}+∑_{D}a_{D}𝛷_{D}+∑_{T}a_{T}𝛷_{T}+⋯=∑_{i=0}aᵢ𝛷ᵢ
+\end{equation}
+\end{equationB}
+#+end_export
+
+Where we have denoted the relative excitation states w.r.t to HF configuration
+with S, D, T for singly excited, doubly excited, and triply excited.
+
+Perhaps more pertinently, though truncated CI methods are not in general size
+extensive, the Quadratic CISD (QCISD) class of methods have enough high order
+terms to ensure the results appear to be size extensive.
+
+With that in mind, and given that the full CI methods can be thought to be
+limited only by the basis set (as the formulation is rooted in the variational
+principle), we *do not* expect that going to the full CI limit will change the
+results substantially for smaller. However, since the full CI limit at a large enough basis
+set might account for even more of the electron correlation, we might expect the
+results to be even closer to experimentally observed values, barring
+relativistic effects (see Fig. [[fig:relfull]]).
+
+
+#+DOWNLOADED: screenshot @ 2020-11-29 03:09:05
+#+name: fig:relfull
+#+label: fig:relfull
+#+caption: Conceptual mapping of the full CI method in the QC context from textcite:jensenIntroductionComputationalChemistry2017
+[[file:images/2020-11-29_03-09-05_screenshot.png]]
+
+Similar to the variational approach, other approaches to systematically include
+corrections to the basic wavefunction exist in the literature (coupled cluster
+methods cite:lewarsComputationalChemistry2016,szaboModernQuantumChemistry1996, cluster perturbation series cite:baudinClusterPerturbationTheory2019), and readers are referred to the
+literature cite:jensenIntroductionComputationalChemistry2017 for details and
+strict equivalence relations with CI methods.
 *** Second Quantization
 Most of the quantum chemistry literature
 cite:szaboModernQuantumChemistry1996,cramerEssentialsComputationalChemistry2004,jensenIntroductionComputationalChemistry2017

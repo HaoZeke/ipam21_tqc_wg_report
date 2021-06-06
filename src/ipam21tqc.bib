@@ -118,6 +118,23 @@
   number = {24}
 }
 
+@article{baudinClusterPerturbationTheory2019,
+  title = {Cluster Perturbation Theory. {{III}}. {{Perturbation}} Series for Coupled Cluster Singles and Doubles Excitation Energies},
+  author = {Baudin, Pablo and Pawłowski, Filip and Bykov, Dmytro and Liakh, Dmitry and Kristensen, Kasper and Olsen, Jeppe and Jørgensen, Poul},
+  date = {2019-04-07},
+  journaltitle = {The Journal of Chemical Physics},
+  shortjournal = {J Chem Phys},
+  volume = {150},
+  pages = {134110},
+  issn = {1089-7690},
+  doi = {10.1063/1.5046935},
+  abstract = {The cluster perturbation series, CPS(D), for coupled cluster singles and doubles excitation energies is considered. It is demonstrated that the second-order model CPS(D-2) is identical to the configuration interaction singles with perturbative doubles, CIS(D) model. The third-order model, CPS(D-3), provides excitation energies of coupled cluster singles and doubles (CCSD) quality in the sense that the difference between CPS(D-3) and CCSD excitation energies is of the same size or smaller than the effect of adding triples corrections to CCSD excitation energies. We further show that the third-order corrections can be efficiently implemented, in particular, when the resolution of the identity approximation is used for integrals. We also show that the CPS(D-3) excitation energies can be determined for system sizes that are far beyond what can be considered in conventional CCSD excitation energy calculations.},
+  eprint = {30954051},
+  eprinttype = {pmid},
+  langid = {english},
+  number = {13}
+}
+
 @article{bauerALPSProjectRelease2011,
   title = {The {{ALPS}} Project Release 2.0: Open Source Software for Strongly Correlated Systems},
   shorttitle = {The {{ALPS}} Project Release 2.0},
@@ -244,6 +261,38 @@
   eprinttype = {arxiv},
   keywords = {Condensed Matter - Statistical Mechanics,Condensed Matter - Strongly Correlated Electrons,High Energy Physics - Theory,Quantum Physics},
   number = {22}
+}
+
+@inproceedings{calvinScalableTaskbasedAlgorithm2015,
+  title = {Scalable Task-Based Algorithm for Multiplication of Block-Rank-Sparse Matrices},
+  booktitle = {Proceedings of the 5th {{Workshop}} on {{Irregular Applications}}: {{Architectures}} and {{Algorithms}}},
+  author = {Calvin, Justus A. and Lewis, Cannada A. and Valeev, Edward F.},
+  date = {2015-11-15},
+  pages = {1--8},
+  publisher = {{Association for Computing Machinery}},
+  location = {{New York, NY, USA}},
+  doi = {10.1145/2833179.2833186},
+  url = {https://doi.org/10.1145/2833179.2833186},
+  urldate = {2021-06-06},
+  abstract = {A task-based formulation of Scalable Universal Matrix Multiplication Algorithm (SUMMA), a popular algorithm for matrix multiplication (MM), is applied to the multiplication of hierarchy-free, rank-structured matrices that appear in the domain of quantum chemistry (QC). The novel features of our formulation are: (1) concurrent scheduling of multiple SUMMA iterations, and (2) fine-grained task-based composition. These features make it tolerant of the load imbalance due to the irregular matrix structure and eliminate all artifactual sources of global synchronization. Scalability of iterative computation of square-root inverse of block-rank-sparse QC matrices is demonstrated; for full-rank (dense) matrices the performance of our SUMMA formulation usually exceeds that of the state-of-the-art dense MM implementations (ScaLAPACK and Cyclops Tensor Framework).},
+  isbn = {978-1-4503-4001-4},
+  keywords = {distributed memory,H matrix,irregular computation,low-rank decomposition,matrix,matrix multiplication,rank-structured,semiseparable matrix,SUMMA,task parallelism,tensor contraction},
+  series = {{{IA}}{\textsuperscript{3}} '15}
+}
+
+@online{calvinTaskBasedAlgorithmMatrix2015,
+  title = {Task-{{Based Algorithm}} for {{Matrix Multiplication}}: {{A Step Towards Block}}-{{Sparse Tensor Computing}}},
+  shorttitle = {Task-{{Based Algorithm}} for {{Matrix Multiplication}}},
+  author = {Calvin, Justus A. and Valeev, Edward F.},
+  date = {2015-04-20},
+  url = {http://arxiv.org/abs/1504.05046},
+  urldate = {2021-06-06},
+  abstract = {Distributed-memory matrix multiplication (MM) is a key element of algorithms in many domains (machine learning, quantum physics). Conventional algorithms for dense MM rely on regular/uniform data decomposition to ensure load balance. These traits conflict with the irregular structure (block-sparse or rank-sparse within blocks) that is increasingly relevant for fast methods in quantum physics. To deal with such irregular data we present a new MM algorithm based on Scalable Universal Matrix Multiplication Algorithm (SUMMA). The novel features are: (1) multiple-issue scheduling of SUMMA iterations, and (2) fine-grained task-based formulation. The latter eliminates the need for explicit internodal synchronization; with multiple-iteration scheduling this allows load imbalance due to nonuniform matrix structure. For square MM with uniform and nonuniform block sizes (the latter simulates matrices with general irregular structure) we found excellent performance in weak and strong-scaling regimes, on commodity and high-end hardware.},
+  archiveprefix = {arXiv},
+  eprint = {1504.05046},
+  eprinttype = {arxiv},
+  keywords = {Computer Science - Distributed; Parallel; and Cluster Computing},
+  primaryclass = {cs}
 }
 
 @online{carrasquillaNeuralNetworksQuantum2021,
@@ -383,6 +432,26 @@
   urldate = {2021-03-29},
   annotation = {00000},
   number = {8}
+}
+
+@article{chouFormatAbstractionSparse2018,
+  title = {Format {{Abstraction}} for {{Sparse Tensor Algebra Compilers}}},
+  author = {Chou, Stephen and Kjolstad, Fredrik and Amarasinghe, Saman},
+  date = {2018-10-24},
+  journaltitle = {Proceedings of the ACM on Programming Languages},
+  shortjournal = {Proc. ACM Program. Lang.},
+  volume = {2},
+  pages = {1--30},
+  issn = {2475-1421},
+  doi = {10.1145/3276493},
+  url = {http://arxiv.org/abs/1804.10112},
+  urldate = {2021-06-06},
+  abstract = {This paper shows how to build a sparse tensor algebra compiler that is agnostic to tensor formats (data layouts). We develop an interface that describes formats in terms of their capabilities and properties, and show how to build a modular code generator where new formats can be added as plugins. We then describe six implementations of the interface that compose to form the dense, CSR/CSF, COO, DIA, ELL, and HASH tensor formats and countless variants thereof. With these implementations at hand, our code generator can generate code to compute any tensor algebra expression on any combination of the aforementioned formats. To demonstrate our technique, we have implemented it in the taco tensor algebra compiler. Our modular code generator design makes it simple to add support for new tensor formats, and the performance of the generated code is competitive with hand-optimized implementations. Furthermore, by extending taco to support a wider range of formats specialized for different application and data characteristics, we can improve end-user application performance. For example, if input data is provided in the COO format, our technique allows computing a single matrix-vector multiplication directly with the data in COO, which is up to 3.6\$\textbackslash times\$ faster than by first converting the data to CSR.},
+  archiveprefix = {arXiv},
+  eprint = {1804.10112},
+  eprinttype = {arxiv},
+  issue = {OOPSLA},
+  keywords = {Computer Science - Mathematical Software,Computer Science - Programming Languages}
 }
 
 @online{cichockiEraBigData2014,
@@ -1178,6 +1247,24 @@
   primaryclass = {math}
 }
 
+@article{harrisonMADNESSMultiresolutionAdaptive2016,
+  title = {{{MADNESS}}: {{A Multiresolution}}, {{Adaptive Numerical Environment}} for {{Scientific Simulation}}},
+  shorttitle = {{{MADNESS}}},
+  author = {Harrison, Robert J. and Beylkin, Gregory and Bischoff, Florian A. and Calvin, Justus A. and Fann, George I. and Fosso-Tande, Jacob and Galindo, Diego and Hammond, Jeff R. and Hartman-Baker, Rebecca and Hill, Judith C. and Jia, Jun and Kottmann, Jakob S. and Yvonne Ou, M-J. and Pei, Junchen and Ratcliff, Laura E. and Reuter, Matthew G. and Richie-Halford, Adam C. and Romero, Nichols A. and Sekino, Hideo and Shelton, William A. and Sundahl, Bryan E. and Thornton, W. Scott and Valeev, Edward F. and Vázquez-Mayagoitia, Álvaro and Vence, Nicholas and Yanai, Takeshi and Yokoi, Yukina},
+  date = {2016-01-01},
+  journaltitle = {SIAM Journal on Scientific Computing},
+  shortjournal = {SIAM J. Sci. Comput.},
+  volume = {38},
+  pages = {S123-S142},
+  publisher = {{Society for Industrial and Applied Mathematics}},
+  issn = {1064-8275},
+  doi = {10.1137/15M1026171},
+  url = {https://epubs.siam.org/doi/10.1137/15M1026171},
+  urldate = {2021-06-06},
+  abstract = {MADNESS (multiresolution adaptive numerical environment for scientific simulation) is a high-level software environment for solving integral and differential equations in many dimensions that uses adaptive and fast harmonic analysis methods with guaranteed precision that are based on multiresolution analysis and separated representations. Underpinning the numerical capabilities is a powerful petascale parallel programming environment that aims to increase both programmer productivity and code scalability. This paper describes the features and capabilities of MADNESS and briefly discusses some current applications in chemistry and several areas of physics.},
+  number = {5}
+}
+
 @article{hauschildEfficientNumericalSimulations2018,
   title = {Efficient Numerical Simulations with {{Tensor Networks}}: {{Tensor Network Python}} ({{TeNPy}})},
   shorttitle = {Efficient Numerical Simulations with {{Tensor Networks}}},
@@ -1328,6 +1415,13 @@
   number = {1}
 }
 
+@article{kaempfferConceptsQuantumMechanics,
+  title = {Concepts in Quantum Mechanics},
+  author = {Kaempffer, F A},
+  pages = {376},
+  langid = {english}
+}
+
 @article{kantianUnderstandingRepulsivelyMediated2019,
   title = {Understanding Repulsively Mediated Superconductivity of Correlated Electrons via Massively Parallel {{DMRG}}},
   author = {Kantian, Adrian and Dolfi, Michele and Troyer, Matthias and Giamarchi, Thierry},
@@ -1457,6 +1551,37 @@
   number = {12}
 }
 
+@online{kjolstadSparseTensorAlgebra2018,
+  title = {Sparse {{Tensor Algebra Optimizations}} with {{Workspaces}}},
+  author = {Kjolstad, Fredrik and Ahrens, Peter and Kamil, Shoaib and Amarasinghe, Saman},
+  date = {2018-04-24},
+  url = {http://arxiv.org/abs/1802.10574},
+  urldate = {2021-06-06},
+  abstract = {This paper shows how to optimize sparse tensor algebraic expressions by introducing temporary tensors, called workspaces, into the resulting loop nests. We develop a new intermediate language for tensor operations called concrete index notation that extends tensor index notation. Concrete index notation expresses when and where sub-computations occur and what tensor they are stored into. We then describe the workspace optimization in this language, and how to compile it to sparse code by building on prior work in the literature. We demonstrate the importance of the optimization on several important sparse tensor kernels, including sparse matrix-matrix multiplication (SpMM), sparse tensor addition (SpAdd), and the matricized tensor times Khatri-Rao product (MTTKRP) used to factorize tensors. Our results show improvements over prior work on tensor algebra compilation and brings the performance of these kernels on par with state-of-the-art hand-optimized implementations. For example, SpMM was not supported by prior tensor algebra compilers, the performance of MTTKRP on the nell-2 data set improves by 35\%, and MTTKRP can for the first time have sparse results.},
+  archiveprefix = {arXiv},
+  eprint = {1802.10574},
+  eprinttype = {arxiv},
+  keywords = {Computer Science - Mathematical Software,Computer Science - Programming Languages},
+  primaryclass = {cs}
+}
+
+@article{kjolstadTensorAlgebraCompiler2017,
+  title = {The Tensor Algebra Compiler},
+  author = {Kjolstad, Fredrik and Kamil, Shoaib and Chou, Stephen and Lugato, David and Amarasinghe, Saman},
+  date = {2017-10-12},
+  journaltitle = {Proceedings of the ACM on Programming Languages},
+  shortjournal = {Proc. ACM Program. Lang.},
+  volume = {1},
+  pages = {1--29},
+  issn = {2475-1421},
+  doi = {10.1145/3133901},
+  url = {https://dl.acm.org/doi/10.1145/3133901},
+  urldate = {2021-06-06},
+  abstract = {Tensor algebra is a powerful tool with applications in machine learning, data analytics, engineering and the physical sciences. Tensors are often sparse and compound operations must frequently be computed in a single kernel for performance and to save memory. Programmers are left to write kernels for every operation of interest, with different mixes of dense and sparse tensors in different formats. The combinations are infinite, which makes it impossible to manually implement and optimize them all. This paper introduces the first compiler technique to automatically generate kernels for any compound tensor algebra operation on dense and sparse tensors. The technique is implemented in a C++ library called taco. Its performance is competitive with best-in-class hand-optimized kernels in popular libraries, while supporting far more tensor operations.},
+  issue = {OOPSLA},
+  langid = {english}
+}
+
 @article{klieschDissipativeQuantumChurchTuring2011,
   title = {A Dissipative Quantum {{Church}}-{{Turing}} Theorem},
   author = {Kliesch, M. and Barthel, T. and Gogolin, C. and Kastoryano, M. and Eisert, J.},
@@ -1491,6 +1616,23 @@
   url = {10.1137/07070111X},
   urldate = {2021-03-09},
   abstract = {This survey provides an overview of higher-order tensor decompositions, their applications, and available software. A tensor is a multidimensional or N-way array. Decompositions of higher-order tensors (i.e., N-way arrays with \$N \textbackslash geq 3\$) have applications in psycho-metrics, chemometrics, signal processing, numerical linear algebra, computer vision, numerical analysis, data mining, neuroscience, graph analysis, and elsewhere. Two particular tensor decompositions can be considered to be higher-order extensions of the matrix singular value decomposition: CANDECOMP/PARAFAC (CP) decomposes a tensor as a sum of rank-one tensors, and the Tucker decomposition is a higher-order form of principal component analysis. There are many other tensor decompositions, including INDSCAL, PARAFAC2, CANDELINC, DEDICOM, and PARATUCK2 as well as nonnegative variants of all of the above. The N-way Toolbox, Tensor Toolbox, and Multilinear Engine are examples of software packages for working with tensors.},
+  number = {3}
+}
+
+@article{koldaTensorDecompositionsApplications2009a,
+  title = {Tensor {{Decompositions}} and {{Applications}}},
+  author = {Kolda, Tamara G. and Bader, Brett W.},
+  date = {2009-08-06},
+  journaltitle = {SIAM Review},
+  shortjournal = {SIAM Rev.},
+  volume = {51},
+  pages = {455--500},
+  issn = {0036-1445, 1095-7200},
+  doi = {10.1137/07070111X},
+  url = {http://epubs.siam.org/doi/10.1137/07070111X},
+  urldate = {2021-06-06},
+  abstract = {This survey provides an overview of higher-order tensor decompositions, their applications, and available software. A tensor is a multidimensional or N -way array. Decompositions of higher-order tensors (i.e., N -way arrays with N ≥ 3) have applications in psychometrics, chemometrics, signal processing, numerical linear algebra, computer vision, numerical analysis, data mining, neuroscience, graph analysis, etc. Two particular tensor decompositions can be considered to be higher-order extensions of the matrix singular value decomposition: CANDECOMP/PARAFAC (CP) decomposes a tensor as a sum of rankone tensors, and the Tucker decomposition is a higher-order form of principal components analysis. There are many other tensor decompositions, including INDSCAL, PARAFAC2, CANDELINC, DEDICOM, and PARATUCK2 as well as nonnegative variants of all of the above. The N-way Toolbox and Tensor Toolbox, both for MATLAB, and the Multilinear Engine are examples of software packages for working with tensors.},
+  langid = {english},
   number = {3}
 }
 
@@ -1783,6 +1925,20 @@
   primaryclass = {cond-mat, physics:hep-th, physics:physics, stat}
 }
 
+@book{montangeroIntroductionTensorNetwork2018,
+  title = {Introduction to {{Tensor Network Methods}}: {{Numerical}} Simulations of Low-Dimensional Many-Body Quantum Systems},
+  shorttitle = {Introduction to {{Tensor Network Methods}}},
+  author = {Montangero, Simone},
+  date = {2018},
+  publisher = {{Springer International Publishing}},
+  location = {{Cham}},
+  doi = {10.1007/978-3-030-01409-4},
+  url = {http://link.springer.com/10.1007/978-3-030-01409-4},
+  urldate = {2021-06-06},
+  isbn = {978-3-030-01408-7 978-3-030-01409-4},
+  langid = {english}
+}
+
 @article{murgSimulatingStronglyCorrelated2010,
   title = {Simulating Strongly Correlated Quantum Systems with Tree Tensor Networks},
   author = {Murg, V. and Verstraete, F. and Legeza, Ö. and Noack, R. M.},
@@ -1989,6 +2145,21 @@
   langid = {english}
 }
 
+@online{psarrasLandscapeSoftwareTensor2021,
+  title = {The Landscape of Software for Tensor Computations},
+  author = {Psarras, Christos and Karlsson, Lars and Li, Jiajia and Bientinesi, Paolo},
+  date = {2021-05-12},
+  url = {http://arxiv.org/abs/2103.13756},
+  urldate = {2021-06-06},
+  abstract = {Tensors (also commonly seen as multi-linear operators or as multi-dimensional arrays) are ubiquitous in scientific computing and in data science, and so are the software efforts for tensor operations. Particularly in recent years, we have observed an explosion in libraries, compilers, packages, and toolboxes; unfortunately these efforts are very much scattered among the different scientific domains, and inevitably suffer from replication, suboptimal implementations, and in many cases, limited visibility. As a first step towards countering these inefficiencies, here we survey and loosely classify software packages related to tensor computations. Our aim is to assemble a comprehensive and up-to-date snapshot of the tensor software landscape, with the intention of helping both users and developers. Aware of the difficulties inherent in any multi-discipline survey, we very much welcome the reader’s help in amending and expanding our software list, which currently features 77 projects.},
+  archiveprefix = {arXiv},
+  eprint = {2103.13756},
+  eprinttype = {arxiv},
+  keywords = {Computer Science - Mathematical Software},
+  langid = {english},
+  primaryclass = {cs}
+}
+
 @inproceedings{qiPathconnectednessTensorRanks2019,
   title = {Path-Connectedness of Tensor Ranks},
   booktitle = {2019 27th {{European Signal Processing Conference}} ({{EUSIPCO}})},
@@ -2019,6 +2190,22 @@
   keywords = {calculations,Convergence,Plane-wave pseudopotential,Reproducibility,Solids},
   langid = {english},
   options = {useprefix=true}
+}
+
+@book{ranTensorNetworkContractions2020,
+  title = {Tensor {{Network Contractions}}: {{Methods}} and {{Applications}} to {{Quantum Many}}-{{Body Systems}}},
+  shorttitle = {Tensor {{Network Contractions}}},
+  author = {Ran, Shi-Ju and Tirrito, Emanuele and Peng, Cheng and Chen, Xi and Tagliacozzo, Luca and Su, Gang and Lewenstein, Maciej},
+  date = {2020},
+  volume = {964},
+  publisher = {{Springer International Publishing}},
+  location = {{Cham}},
+  doi = {10.1007/978-3-030-34489-4},
+  url = {http://link.springer.com/10.1007/978-3-030-34489-4},
+  urldate = {2021-06-06},
+  isbn = {978-3-030-34488-7 978-3-030-34489-4},
+  langid = {english},
+  series = {Lecture {{Notes}} in {{Physics}}}
 }
 
 @article{richardsThirdAgeQuantum1979,
@@ -2352,6 +2539,33 @@
   number = {1}
 }
 
+@book{surjanCorrelationLocalization1999,
+  title = {Correlation and Localization},
+  editor = {Surjań, Peter R.},
+  date = {1999},
+  publisher = {{Springer}},
+  location = {{Berlin}},
+  annotation = {OCLC: 246227825},
+  isbn = {978-3-540-65754-5},
+  langid = {english},
+  number = {203},
+  pagetotal = {232},
+  series = {Topics in Current Chemistry}
+}
+
+@book{surjanSecondQuantizedApproach1989,
+  title = {Second {{Quantized Approach}} to {{Quantum Chemistry}}},
+  author = {Surján, Péter R.},
+  date = {1989},
+  publisher = {{Springer Berlin Heidelberg}},
+  location = {{Berlin, Heidelberg}},
+  doi = {10.1007/978-3-642-74755-7},
+  url = {http://link.springer.com/10.1007/978-3-642-74755-7},
+  urldate = {2021-06-06},
+  isbn = {978-3-642-74757-1 978-3-642-74755-7},
+  langid = {english}
+}
+
 @book{szaboModernQuantumChemistry1996,
   title = {Modern Quantum Chemistry: Introduction to Advanced Electronic Structure Theory},
   shorttitle = {Modern Quantum Chemistry},
@@ -2430,6 +2644,20 @@
   langid = {english}
 }
 
+@book{vanderstraetenTensorNetworkStates2017,
+  title = {Tensor {{Network States}} and {{Effective Particles}} for {{Low}}-{{Dimensional Quantum Spin Systems}}},
+  author = {Vanderstraeten, Laurens},
+  date = {2017},
+  publisher = {{Springer International Publishing}},
+  location = {{Cham}},
+  doi = {10.1007/978-3-319-64191-1},
+  url = {http://link.springer.com/10.1007/978-3-319-64191-1},
+  urldate = {2021-06-06},
+  isbn = {978-3-319-64190-4 978-3-319-64191-1},
+  langid = {english},
+  series = {Springer {{Theses}}}
+}
+
 @article{venderleyDMRGStudyPairdensity2019,
   title = {A {{DMRG}} Study: {{Pair}}-Density Wave in Spin-Valley Locked Systems},
   shorttitle = {A {{DMRG}} Study},
@@ -2484,6 +2712,23 @@
   urldate = {2021-05-22},
   abstract = {We show how to simulate numerically the evolution of 1D quantum systems under dissipation as well as in thermal equilibrium. The method applies to both finite and inhomogeneous systems, and it is based on two ideas: (a) a representation for density operators which extends that of matrix product states to mixed states; (b) an algorithm to approximate the evolution (in real or imaginary time) of matrix product states which is variational.},
   number = {20}
+}
+
+@article{vervlietExploitingEfficientRepresentations2019,
+  title = {Exploiting {{Efficient Representations}} in {{Large}}-{{Scale Tensor Decompositions}}},
+  author = {Vervliet, Nico and Debals, Otto and De Lathauwer, Lieven},
+  date = {2019-01-01},
+  journaltitle = {SIAM Journal on Scientific Computing},
+  shortjournal = {SIAM J. Sci. Comput.},
+  volume = {41},
+  pages = {A789-A815},
+  publisher = {{Society for Industrial and Applied Mathematics}},
+  issn = {1064-8275},
+  doi = {10.1137/17M1152371},
+  url = {https://epubs.siam.org/doi/abs/10.1137/17M1152371},
+  urldate = {2021-06-06},
+  abstract = {Decomposing tensors into simple terms is often an essential step toward discovering and understanding underlying processes or toward compressing data. However, storing the tensor and computing its decomposition is challenging in a large-scale setting. Though in many cases a tensor is structured, it can be represented using few parameters: a sparse tensor is determined by the positions and values of its nonzeros, a polyadic decomposition by its factor matrices, a Tensor Train by its core tensors, a Hankel tensor by its generating vector, etc. The complexity of tensor decomposition algorithms can be reduced significantly in terms of time and memory if these efficient representations are exploited directly. Only a few core operations such as norms and inner products need to be specialized to achieve this, thereby avoiding the explicit construction of multiway arrays.  To improve the interpretability of tensor models, constraints are often imposed or multiple datasets are fused through joint factorizations. While imposing these constraints prohibits the use of traditional compression techniques, our framework allows constraints and compression, as well as other efficient representations, to be handled trivially as the underlying optimization variables do not change. To illustrate this, large-scale nonnegative tensor factorization is performed using MLSVD and Tensor Train compression. We also show how vector and matrix data can be analyzed using tensorization while keeping a vector or matrix complexity through the concept of implicit tensorization, as illustrated for Hankelization and Löwnerization. The concepts and numerical properties are extensively investigated through experiments.},
+  number = {2}
 }
 
 @article{vidalEfficientClassicalSimulation2003,
