@@ -262,11 +262,37 @@ tensor framework]] (CTF) cite:solomonikMassivelyParallelTensor2014, [[https://gi
 cite:solomonikMassivelyParallelTensor2014 has also suffered from a lack of
 development. CTF cite:levyDistributedMemoryDMRGSparse2020 is reasonably well
 developed, but it has fallen behind in terms of speed compared to the later
-stage libraries like the tensorflow accelerated opt einsum.
+stage libraries [[https://optimized-einsum.readthedocs.io/en/stable/][opt_einsum]] which can take advantage of dispatching efficiently
+to specialized hardware.
 ** Quantum Chemistry Software
-Quantum chemistry has suffered for many years as a retarded child of computer science in terms of the communal adoption of closed source tools which can be traced back to the original sin of Gaussian going closed source. Lately, there has been a slight re calibration of the community’s moral compass in a positive sense, and several previously closed source packages have become open-source (e.g. the GAP potentials, d-SEAMS, LAMMPS, GROMACS, PSI4).
-*** Tensor Implementations
-** Tensor Libraries
+Quantum chemistry has suffered for many years as a retarded child of computer
+science in terms of the communal adoption of closed source tools which can be
+traced back to the original sin of Gaussian becoming closed source. Lately,
+there has been a slight re calibration of the community’s moral compass in a
+positive sense, and several previously closed source packages have become
+open-source (e.g. the GAP potentials). The veritable zoo of software
+cite:sherrillElectronicStructureSoftware2020 developed cannot be enumerated in
+any reasonable treatise and will be left to the discretion of the reader.
+
+We note in passing that the difficulty in obtaining meaningful information from
+the outputs of a standard quantum chemistry code has given the community many
+new avenues of exploration including the entire field of computational material
+sciences. For issues concerning insight the community tools focus on
+visualization (OVITO cite:stukowskiVisualizationAnalysisAtomistic2010, VMD) or
+structural analysis (d-SEAMS cite:goswamiDSEAMSDeferredStructural2020) for
+molecular dynamics , and workflow flexibility for quantum chemistry. Flexibility
+and reproducibility is ensured by meta-analysis methods such as those
+implemented by [[https://www.aiida.net/][AiiDA]]
+cite:pizziAiiDAAutomatedInteractive2016,huberAiiDAScalableComputational2020 or
+[[https://pyiron.org][PyIron]] cite:janssenPyironIntegratedDevelopment2019, or the set of tools which
+build off of [[https://gitlab.com/ase/ase][ASE]] (atomic simulation environment)
+cite:larsenAtomicSimulationEnvironment2017 like [[http://wiki.fysik.dtu.dk/gpaw][GPAW]]
+cite:enkovaaraElectronicStructureCalculations2010,dohnGridBasedProjectorAugmented2017.
+
+The crux of these tools is to maximally enable user-interactivity. However,
+these tools do not typically work in an interchangeable manner at the level of
+theory. Most quantum chemistry codes work in a pidgin syntax which
+
 ** High Performance Computing Considerations
 * Conclusions
 ** Goals and Outputs
