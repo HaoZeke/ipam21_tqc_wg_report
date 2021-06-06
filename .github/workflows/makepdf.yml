@@ -17,9 +17,11 @@ jobs:
 
       - name: Install package
         run: |
-          sudo apt-get install -y python-pygments emacs \
-          texlive-full texlive-science texlive-xetex latexmk \
-          texlive-bibtex-extra biber
+          sudo apt-get install -y python-pygments emacs
+
+      - name: Setup LaTeX
+        run: |
+          scripts/getTexLive.sh $(pwd)/scripts/texlive.profile
 
       - name: Generate TeX
         run: |
@@ -28,7 +30,7 @@ jobs:
       - name: Build pdf
         run: |
           cd src/
-          latexmk -pdfxe -shell-escape wgtqc.tex -f
+          texliveonfly -c latexmk -a "-pdfxe -shell-escape -f" wgtqc.tex
 
       - name: Move pdf
         run: |
