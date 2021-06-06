@@ -86,8 +86,14 @@ backend=biber]{biblatex}
 \RequirePackage{avant} % Use the Avantgarde font for headings
 \RequirePackage[scaled]{helvet}
 \RequirePackage{unicode-math}
-\setmathfont[StylisticSet=1]{XITS Math}
 \setmainfont[Ligatures=NoRequired,Numbers=OldStyle,SmallCapsFeatures={LetterSpace=6}]{Baskervaldx}
+% Asana
+\setmathfont[
+	Path = Fonts/AsanaMath/,
+  StylisticSet=1,
+	Extension = .otf
+]{Asana-Math}
+
 % Cascadia Code PL
 \setmonofont[
 	Path = Fonts/Cascadia/,
