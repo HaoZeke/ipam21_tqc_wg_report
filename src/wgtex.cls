@@ -38,7 +38,6 @@ abbreviate=false,%
 backref=true,%
 backend=biber]{biblatex}
 \RequirePackage{hyperref}
-
 \RequirePackage{mathtools, amsthm} % For math equations, theorems, symbols, etc
 
 % Define the orange color used for highlighting throughout the book
@@ -80,20 +79,24 @@ backend=biber]{biblatex}
 %----------------------------------------------------------------------------------------
 
 \RequirePackage{microtype} % Slightly tweak font spacing for aesthetics
-\RequirePackage[utf8]{inputenc} % Required for including letters with accents
-\RequirePackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\RequirePackage{fontspec} % Xelatex fontenc
 \RequirePackage[english]{babel} % Load characters and hyphenation
 \RequirePackage[english=british]{csquotes}	% English quotes
 
 \RequirePackage{avant} % Use the Avantgarde font for headings
-% \RequirePackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
-% \RequirePackage{fourier}
-\RequirePackage{Baskervaldx}
 \RequirePackage[scaled]{helvet}
-\RequirePackage[scaled=.85]{beramono} % monospace font
-\RequirePackage[cal=boondoxo]{mathalfa} % mathcal from STIX, unslanted a bit
-\RequirePackage[cmintegrals,bigdelims,vvarbb]{newtxmath} %
-
+\RequirePackage{unicode-math}
+\setmathfont[StylisticSet=1]{XITS Math}
+\setmainfont[Ligatures=NoRequired,Numbers=OldStyle,SmallCapsFeatures={LetterSpace=6}]{Baskervaldx}
+% Cascadia Code PL
+\setmonofont[
+	Path = Fonts/Cascadia/,
+	Extension = .otf,
+	UprightFont = *-Regular,
+	ItalicFont = *Italic-Italic,
+	BoldFont = *-Bold,
+	BoldItalicFont = *Italic-BoldItalic
+]{CascadiaCodePL}
 
 \addtokomafont{part}{\normalfont\scshape\bfseries}
 \addtokomafont{chapter}{\normalfont\bfseries}
