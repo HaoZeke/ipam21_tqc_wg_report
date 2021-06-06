@@ -29,6 +29,8 @@ jobs:
 
       - name: Build pdf
         run: |
+          export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
+          export PATH=$HOME/texmf/bin:$PATH
           cd src/
           texliveonfly -c latexmk -a "-pdfxe -shell-escape -f" wgtqc.tex
 
