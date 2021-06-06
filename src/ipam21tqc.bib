@@ -1,4 +1,22 @@
 
+@article{abrahamGROMACSHighPerformance2015,
+  title = {{{GROMACS}}: {{High}} Performance Molecular Simulations through Multi-Level Parallelism from Laptops to Supercomputers},
+  shorttitle = {{{GROMACS}}},
+  author = {Abraham, Mark James and Murtola, Teemu and Schulz, Roland and Páll, Szilárd and Smith, Jeremy C. and Hess, Berk and Lindahl, Erik},
+  date = {2015-09-01},
+  journaltitle = {SoftwareX},
+  shortjournal = {SoftwareX},
+  volume = {1-2},
+  pages = {19--25},
+  issn = {2352-7110},
+  doi = {10/f3pj2n},
+  url = {http://www.sciencedirect.com/science/article/pii/S2352711015000059},
+  urldate = {2019-09-05},
+  abstract = {GROMACS is one of the most widely used open-source and free software codes in chemistry, used primarily for dynamical simulations of biomolecules. It provides a rich set of calculation types, preparation and analysis tools. Several advanced techniques for free-energy calculations are supported. In version 5, it reaches new performance heights, through several new and enhanced parallelization algorithms. These work on every level; SIMD registers inside cores, multithreading, heterogeneous CPU–GPU acceleration, state-of-the-art 3D domain decomposition, and ensemble-level parallelization through built-in replica exchange and the separate Copernicus framework. The latest best-in-class compressed trajectory storage format is supported.},
+  annotation = {02922},
+  keywords = {Free energy,GPU,Molecular dynamics,SIMD}
+}
+
 @book{allenComputerSimulationLiquids2017,
   title = {Computer Simulation of Liquids},
   author = {Allen, M. P. and Tildesley, D. J.},
@@ -513,6 +531,23 @@
   keywords = {Circuits and systems,Control systems,Data mining,Frequency,Heart,Matrices,Matrix decomposition,Signal processing,Singular value decomposition,Tensile stress}
 }
 
+@article{dohnGridBasedProjectorAugmented2017,
+  title = {Grid-{{Based Projector Augmented Wave}} ({{GPAW}}) {{Implementation}} of {{Quantum Mechanics}}/{{Molecular Mechanics}} ({{QM}}/{{MM}}) {{Electrostatic Embedding}} and {{Application}} to a {{Solvated Diplatinum Complex}}},
+  author = {Dohn, A. O. and Jónsson, E. Ö. and Levi, G. and Mortensen, J. J. and Lopez-Acevedo, O. and Thygesen, K. S. and Jacobsen, K. W. and Ulstrup, J. and Henriksen, N. E. and Møller, K. B. and Jónsson, H.},
+  date = {2017-12-12},
+  journaltitle = {Journal of Chemical Theory and Computation},
+  shortjournal = {J. Chem. Theory Comput.},
+  volume = {13},
+  pages = {6010--6022},
+  publisher = {{American Chemical Society}},
+  issn = {1549-9618},
+  doi = {10.1021/acs.jctc.7b00621},
+  url = {https://doi.org/10.1021/acs.jctc.7b00621},
+  urldate = {2021-05-25},
+  abstract = {A multiscale density functional theory–quantum mechanics/molecular mechanics (DFT-QM/MM) scheme is presented, based on an efficient electrostatic coupling between the electronic density obtained from a grid-based projector augmented wave (GPAW) implementation of density functional theory and a classical potential energy function. The scheme is implemented in a general fashion and can be used with various choices for the descriptions of the QM or MM regions. Tests on H2O clusters, ranging from dimer to decamer show that no systematic energy errors are introduced by the coupling that exceeds the differences in the QM and MM descriptions. Over 1 ns of liquid water, Born–Oppenheimer QM/MM molecular dynamics (MD) are sampled combining 10 parallel simulations, showing consistent liquid water structure over the QM/MM border. The method is applied in extensive parallel MD simulations of an aqueous solution of the diplatinum [Pt2(P2O5H2)4]4– complex (PtPOP), spanning a total time period of roughly half a nanosecond. An average Pt–Pt distance deviating only 0.01 Å from experimental results, and a ground-state Pt–Pt oscillation frequency deviating by {$<$}2\% from experimental results were obtained. The simulations highlight a remarkable harmonicity of the Pt–Pt oscillation, while also showing clear signs of Pt–H hydrogen bonding and directional coordination of water molecules along the Pt–Pt axis of the complex.},
+  number = {12}
+}
+
 @article{dubeySurveyHighLevel2014,
   title = {A Survey of High Level Frameworks in Block-Structured Adaptive Mesh Refinement Packages},
   author = {Dubey, Anshu and Almgren, Ann and Bell, John and Berzins, Martin and Brandt, Steve and Bryan, Greg and Colella, Phillip and Graves, Daniel and Lijewski, Michael and Löffler, Frank and O’Shea, Brian and Schnetter, Erik and Van Straalen, Brian and Weide, Klaus},
@@ -590,6 +625,25 @@
   eprinttype = {arxiv},
   keywords = {Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning,Condensed Matter - Strongly Correlated Electrons,Physics - Computational Physics,Statistics - Machine Learning},
   primaryclass = {cond-mat, physics:physics, stat}
+}
+
+@article{enkovaaraElectronicStructureCalculations2010,
+  title = {Electronic Structure Calculations with {{GPAW}}: A Real-Space Implementation of the Projector Augmented-Wave Method},
+  shorttitle = {Electronic Structure Calculations with {{GPAW}}},
+  author = {Enkovaara, J. and Rostgaard, C. and Mortensen, J. J. and Chen, J. and Du\textbackslash lak, M. and Ferrighi, L. and Gavnholt, J. and Glinsvad, C. and Haikola, V. and Hansen, H. A. and Kristoffersen, H. H. and Kuisma, M. and Larsen, A. H. and Lehtovaara, L. and Ljungberg, M. and Lopez-Acevedo, O. and Moses, P. G. and Ojanen, J. and Olsen, T. and Petzold, V. and Romero, N. A. and Stausholm-Møller, J. and Strange, M. and Tritsaris, G. A. and Vanin, M. and Walter, M. and Hammer, B. and Häkkinen, H. and Madsen, G. K. H. and Nieminen, R. M. and Nørskov, J. K. and Puska, M. and Rantala, T. T. and Schiøtz, J. and Thygesen, K. S. and Jacobsen, K. W.},
+  date = {2010-06},
+  journaltitle = {Journal of Physics: Condensed Matter},
+  shortjournal = {J. Phys.: Condens. Matter},
+  volume = {22},
+  pages = {253202},
+  publisher = {{IOP Publishing}},
+  issn = {0953-8984},
+  doi = {10.1088/0953-8984/22/25/253202},
+  url = {https://doi.org/10.1088/0953-8984/22/25/253202},
+  urldate = {2021-05-25},
+  abstract = {Electronic structure calculations have become an indispensable tool in many areas of materials science and quantum chemistry. Even though the Kohn–Sham formulation of the density-functional theory (DFT) simplifies the many-body problem significantly, one is still confronted with several numerical challenges. In this article we present the projector augmented-wave (PAW) method as implemented in the GPAW program package (https://wiki.fysik.dtu.dk/gpaw) using a uniform real-space grid representation of the electronic wavefunctions. Compared to more traditional plane wave or localized basis set approaches, real-space grids offer several advantages, most notably good computational scalability and systematic convergence properties. However, as a unique feature GPAW also facilitates a localized atomic-orbital basis set in addition to the grid. The efficient atomic basis set is complementary to the more accurate grid, and the possibility to seamlessly switch between the two representations provides great flexibility. While DFT allows one to study ground state properties, time-dependent density-functional theory (TDDFT) provides access to the excited states. We have implemented the two common formulations of TDDFT, namely the linear-response and the time propagation schemes. Electron transport calculations under finite-bias conditions can be performed with GPAW using non-equilibrium Green functions and the localized basis set. In addition to the basic features of the real-space PAW method, we also describe the implementation of selected exchange–correlation functionals, parallelization schemes, ΔSCF-method, x-ray absorption spectra, and maximally localized Wannier orbitals.},
+  langid = {english},
+  number = {25}
 }
 
 @article{esterieNumericalTemplateToolbox2014,
@@ -829,6 +883,22 @@
   number = {6}
 }
 
+@article{goswamiDSEAMSDeferredStructural2020,
+  title = {D-{{SEAMS}}: {{Deferred Structural Elucidation Analysis}} for {{Molecular Simulations}}},
+  shorttitle = {D-{{SEAMS}}},
+  author = {Goswami, Rohit and Goswami, Amrita and Singh, Jayant K.},
+  date = {2020-04-27},
+  journaltitle = {Journal of Chemical Information and Modeling},
+  shortjournal = {J. Chem. Inf. Model.},
+  volume = {60},
+  pages = {2169--2177},
+  issn = {1549-9596, 1549-960X},
+  doi = {10.1021/acs.jcim.0c00031},
+  keywords = {\#nosource,⛔ No DOI found,archived,cond-mat.mtrl-sci,Condensed Matter - Materials Science,Physics - Atomic and Molecular Clusters,Physics - Chemical Physics,Physics - Computational Physics,physics.atm-clus,physics.chem-ph,physics.comp-ph},
+  langid = {english},
+  number = {4}
+}
+
 @article{grasedyckDistributedHierarchicalSVD2018,
   title = {Distributed Hierarchical {{SVD}} in the {{Hierarchical Tucker}} Format},
   author = {Grasedyck, Lars and Löbbert, Christian},
@@ -1028,6 +1098,23 @@
   series = {Springer {{Series}} in {{Computational Mathematics}}}
 }
 
+@incollection{hakalaGridBasedProjectorAugmentedWave2016,
+  title = {Grid-{{Based Projector}}-{{Augmented Wave Method}}},
+  booktitle = {Electronic {{Structure Calculations}} on {{Graphics Processing Units}}},
+  author = {Hakala, Samuli and Enkovaara, Jussi and Havu, Ville and Yan, Jun and Li, Lin and O'Grady, Chris and Nieminen, Risto M.},
+  date = {2016},
+  pages = {191--210},
+  publisher = {{John Wiley \& Sons, Ltd}},
+  doi = {10.1002/9781118670712.ch9},
+  url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118670712.ch9},
+  urldate = {2021-05-25},
+  abstract = {Grid-Based Projector-Augmented Wave Method (GPAW) implements the projector-augmented-wave (PAW) method utilizing uniform real-space grids. This chapter describes how the resulting algorithms can be accelerated by using general-purpose graphics processing units (GPUs). Real-space grids enable the use of efficient multigrid techniques, and they also offer good parallelization prospects, as information is typically needed only from a few neighboring grid points. The chapter presents the GPU implementation for the ground-state calculations and associated results. It also discusses real-time propagation time-dependent density functional theory (TD-DFT) and its GPU implementation. The achievable speedup and scalability of TD-DFT calculations is similar to those of ground-state calculations. As a specific feature, the chapter also discusses how the computationally demanding random phase approximation to the exchange-correlation energy can be accelerated by a factor of 40 using one GPU per CPU core.},
+  annotation = {\_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118670712.ch9},
+  isbn = {978-1-118-67071-2},
+  keywords = {graphics processing unit,grid-based projector-augmented wave method,ground-state calculations,multigrid technique,random phase approximation,real-space algorithm,time-dependent density functional theory,uniform real-space grids},
+  langid = {english}
+}
+
 @online{hanSingularitiesThirdSecant2018,
   title = {On Singularities of Third Secant Varieties of {{Veronese}} Embeddings},
   author = {Han, Kangjin},
@@ -1103,6 +1190,19 @@
   primaryclass = {cond-mat, physics:quant-ph}
 }
 
+@article{Humphrey1996,
+  title = {{{VMD}}: Visual Molecular Dynamics},
+  author = {Humphrey, William and Dalke, Andrew and Schulten, Klaus},
+  date = {1996-02},
+  journaltitle = {Journal of Molecular Graphics},
+  volume = {14},
+  pages = {33--38},
+  publisher = {{Elsevier BV}},
+  doi = {10/b3tgfk},
+  keywords = {\#nosource},
+  number = {1}
+}
+
 @article{inceCaseOpenComputer2012,
   title = {The Case for Open Computer Programs},
   author = {Ince, Darrel C. and Hatton, Leslie and Graham-Cumming, John},
@@ -1117,6 +1217,24 @@
   abstract = {Scientific communication relies on evidence that cannot be entirely included in publications, but the rise of computational science has added a new layer of inaccessibility. Although it is now accepted that data should be made available on request, the current regulations regarding the availability of software are inconsistent. We argue that, with some exceptions, anything less than the release of source programs is intolerable for results that depend on computation. The vagaries of hardware, software and natural language will always ensure that exact reproducibility remains uncertain, but withholding code increases the chances that efforts to reproduce results will fail.},
   langid = {english},
   number = {7386}
+}
+
+@article{janssenPyironIntegratedDevelopment2019,
+  title = {Pyiron: {{An}} Integrated Development Environment for Computational Materials Science},
+  shorttitle = {Pyiron},
+  author = {Janssen, Jan and Surendralal, Sudarsan and Lysogorskiy, Yury and Todorova, Mira and Hickel, Tilmann and Drautz, Ralf and Neugebauer, Jörg},
+  date = {2019-06-01},
+  journaltitle = {Computational Materials Science},
+  shortjournal = {Computational Materials Science},
+  volume = {163},
+  pages = {24--36},
+  issn = {0927-0256},
+  doi = {10.1016/j.commatsci.2018.07.043},
+  url = {https://www.sciencedirect.com/science/article/pii/S0927025618304786},
+  urldate = {2021-06-06},
+  abstract = {To support and accelerate the development of simulation protocols in atomistic modelling, we introduce an integrated development environment (IDE) for computational materials science called pyiron (http://pyiron.org). The pyiron IDE combines a web based source code editor, a job management system for build automation, and a hierarchical data management solution. The core components of the pyiron IDE are pyiron objects based on an abstract class, which links application structures such as atomistic structures, projects, jobs, simulation protocols and computing resources with persistent storage and an interactive user environment. The simulation protocols within the pyiron IDE are constructed using the Python programming language. To highlight key concepts of this tool as well as to demonstrate its ability to simplify the implementation and testing of simulation protocols we discuss two applications. In these examples we show how pyiron supports the whole life cycle of a typical simulation, seamlessly combines ab initio with empirical potential calculations, and how complex feedback loops can be implemented. While originally developed with focus on ab initio thermodynamics simulations, the concepts and implementation of pyiron are general thus allowing to employ it for a wide range of simulation topics.},
+  keywords = {Complex simulation protocols,Integrated development environment,Modelling workflow},
+  langid = {english}
 }
 
 @book{jensenIntroductionComputationalChemistry2017,
@@ -1375,6 +1493,23 @@
   isbn = {978-0-8218-6907-9 978-0-8218-8483-6},
   langid = {english},
   series = {Graduate {{Studies}} in {{Mathematics}}}
+}
+
+@article{larsenAtomicSimulationEnvironment2017,
+  title = {The Atomic Simulation Environment—a {{Python}} Library for Working with Atoms},
+  author = {Larsen, Ask Hjorth and Mortensen, Jens Jørgen and Blomqvist, Jakob and Castelli, Ivano E. and Christensen, Rune and Du\textbackslash lak, Marcin and Friis, Jesper and Groves, Michael N. and Hammer, Bjørk and Hargus, Cory and Hermes, Eric D. and Jennings, Paul C. and Jensen, Peter Bjerre and Kermode, James and Kitchin, John R. and Kolsbjerg, Esben Leonhard and Kubal, Joseph and Kaasbjerg, Kristen and Lysgaard, Steen and Maronsson, Jón Bergmann and Maxson, Tristan and Olsen, Thomas and Pastewka, Lars and Peterson, Andrew and Rostgaard, Carsten and Schiøtz, Jakob and Schütt, Ole and Strange, Mikkel and Thygesen, Kristian S. and Vegge, Tejs and Vilhelmsen, Lasse and Walter, Michael and Zeng, Zhenhua and Jacobsen, Karsten W.},
+  date = {2017-06},
+  journaltitle = {Journal of Physics: Condensed Matter},
+  shortjournal = {J. Phys.: Condens. Matter},
+  volume = {29},
+  pages = {273002},
+  issn = {0953-8984},
+  doi = {10.1088/1361-648X/aa680e},
+  url = {https://doi.org/10.1088%2F1361-648x%2Faa680e},
+  urldate = {2020-01-24},
+  abstract = {The atomic simulation environment (ASE) is a software package written in the Python programming language with the aim of setting up, steering, and analyzing atomistic simulations. In ASE, tasks are fully scripted in Python. The powerful syntax of Python combined with the NumPy array library make it possible to perform very complex simulation tasks. For example, a sequence of calculations may be performed with the use of a simple ‘for-loop’ construction. Calculations of energy, forces, stresses and other quantities are performed through interfaces to many external electronic structure codes or force fields using a uniform interface. On top of this calculator interface, ASE provides modules for performing many standard simulation tasks such as structure optimization, molecular dynamics, handling of constraints and performing nudged elastic band calculations.},
+  langid = {english},
+  number = {27}
 }
 
 @incollection{legezaTensorProductApproximation2014,
@@ -2010,6 +2145,23 @@
   number = {12}
 }
 
+@article{sherrillElectronicStructureSoftware2020,
+  title = {Electronic Structure Software},
+  author = {Sherrill, C. David and Manolopoulos, David E. and Martínez, Todd J. and Michaelides, Angelos},
+  date = {2020-08-17},
+  journaltitle = {The Journal of Chemical Physics},
+  shortjournal = {J. Chem. Phys.},
+  volume = {153},
+  pages = {070401},
+  publisher = {{American Institute of Physics}},
+  issn = {0021-9606},
+  doi = {10.1063/5.0023185},
+  url = {10.1063/5.0023185},
+  urldate = {2020-12-16},
+  annotation = {00000},
+  number = {7}
+}
+
 @article{silviTensorNetworksAnthology2019,
   title = {The {{Tensor Networks Anthology}}: {{Simulation}} Techniques for Many-Body Quantum Lattice Systems},
   shorttitle = {The {{Tensor Networks Anthology}}},
@@ -2024,6 +2176,22 @@
   urldate = {2021-05-18},
   abstract = {We present a compendium of numerical simulation techniques, based on tensor network methods, aiming to address problems of many-body quantum mechanics on a classical computer. The core setting of this anthology are lattice problems in low spatial dimension at finite size, a physical scenario where tensor network methods, both Density Matrix Renormalization Group and beyond, have long proven to be winning strategies. Here we explore in detail the numerical frameworks and methods employed to deal with lowdimensional physical setups, from a computational physics perspective. We focus on symmetries and closed-system simulations in arbitrary boundary conditions, while discussing the numerical data structures and linear algebra manipulation routines involved, which form the core libraries of any tensor network code. At a higher level, we put the spotlight on loop-free network geometries, discussing their advantages, and presenting in detail algorithms to simulate low-energy equilibrium states. Accompanied by discussions of data structures, numerical techniques and performance, this anthology serves as a programmer’s companion, as well as a self-contained introduction and review of the basic and selected advanced concepts in tensor networks, including examples of their applications.},
   langid = {english}
+}
+
+@article{singraberLibraryBasedLAMMPSImplementation2019,
+  title = {Library-{{Based LAMMPS Implementation}} of {{High}}-{{Dimensional Neural Network Potentials}}},
+  author = {Singraber, Andreas and Behler, Jörg and Dellago, Christoph},
+  date = {2019-03-12},
+  journaltitle = {Journal of Chemical Theory and Computation},
+  shortjournal = {J. Chem. Theory Comput.},
+  volume = {15},
+  pages = {1827--1840},
+  issn = {1549-9618},
+  doi = {10.1021/acs.jctc.8b00770},
+  url = {https://doi.org/10.1021/acs.jctc.8b00770},
+  urldate = {2020-02-06},
+  abstract = {Neural networks and other machine learning approaches have been successfully used to accurately represent atomic interaction potentials derived from computationally demanding electronic structure calculations. Due to their low computational cost, such representations open the possibility for large scale reactive molecular dynamics simulations of processes with bonding situations that cannot be described accurately with traditional empirical force fields. Here, we present a library of functions developed for the implementation of neural network potentials. Written in C++, this library incorporates several strategies resulting in a very high efficiency of neural network potential-energy and force evaluations. Based on this library, we have developed an implementation of the neural network potential within the molecular dynamics package LAMMPS and demonstrate its performance using liquid water as a test system.},
+  number = {3}
 }
 
 @article{solomonikMassivelyParallelTensor2014,
@@ -2105,6 +2273,24 @@
   pagetotal = {750}
 }
 
+@article{stukowskiVisualizationAnalysisAtomistic2010,
+  title = {Visualization and Analysis of Atomistic Simulation Data with {{OVITO}}–the {{Open Visualization Tool}}},
+  author = {Stukowski, Alexander},
+  date = {2010-01-01},
+  journaltitle = {Modelling and Simulation in Materials Science and Engineering},
+  volume = {18},
+  pages = {015012},
+  issn = {0965-0393, 1361-651X},
+  doi = {10/c2hx6n},
+  url = {http://stacks.iop.org/0965-0393/18/i=1/a=015012?key=crossref.6895e2c3bb522d1563fb2e2fe9f22789},
+  urldate = {2018-07-24},
+  abstract = {The Open Visualization Tool (OVITO) is a new 3D visualization software designed for post-processing atomistic data obtained from molecular dynamics or Monte Carlo simulations. Unique analysis, editing and animations functions are integrated into its easy-to-use graphical user interface. The software is written in object-oriented C++, controllable via Python scripts and easily extendable through a plug-in interface. It is distributed as open-source software and can be downloaded from the website http://ovito.sourceforge.net/.},
+  annotation = {02186},
+  keywords = {\#nosource},
+  langid = {english},
+  number = {1}
+}
+
 @book{szaboModernQuantumChemistry1996,
   title = {Modern Quantum Chemistry: Introduction to Advanced Electronic Structure Theory},
   shorttitle = {Modern Quantum Chemistry},
@@ -2149,6 +2335,23 @@
   abstract = {We explore the interplay of electron-electron correlations and spin-orbit coupling in the model Fermi liquid Sr2RuO4 using laser-based angle-resolved photoemission spectroscopy. Our precise measurement of the Fermi surface confirms the importance of spin-orbit coupling in this material and reveals that its effective value is enhanced by a factor of about 2, due to electronic correlations. The self-energies for the β and γ sheets are found to display significant angular dependence. By taking into account the multi-orbital composition of quasiparticle states, we determine self-energies associated with each orbital component directly from the experimental data. This analysis demonstrates that the perceived angular dependence does not imply momentum-dependent many-body effects but arises from a substantial orbital mixing induced by spin-orbit coupling. A comparison to single-site dynamical mean-field theory further supports the notion of dominantly local orbital self-energies and provides strong evidence for an electronic origin of the observed nonlinear frequency dependence of the self-energies, leading to “kinks” in the quasiparticle dispersion of Sr2RuO4.},
   number = {2},
   options = {useprefix=true}
+}
+
+@article{tranchidaMassivelyParallelSymplectic2018,
+  title = {Massively Parallel Symplectic Algorithm for Coupled Magnetic Spin Dynamics and Molecular Dynamics},
+  author = {Tranchida, J. and Plimpton, S. J. and Thibaudeau, P. and Thompson, A. P.},
+  date = {2018-11-01},
+  journaltitle = {Journal of Computational Physics},
+  shortjournal = {Journal of Computational Physics},
+  volume = {372},
+  pages = {406--425},
+  issn = {0021-9991},
+  doi = {10.1016/j.jcp.2018.06.042},
+  url = {http://www.sciencedirect.com/science/article/pii/S0021999118304200},
+  urldate = {2020-07-01},
+  abstract = {A parallel implementation of coupled spin–lattice dynamics in the LAMMPS molecular dynamics package is presented. The approach is very general, and can be applied to simple ferromagnets, magnetic alloys, or amorphous magnetic materials. Equations of motion for both spin only and coupled spin–lattice dynamics are first reviewed, including a detailed account of how magneto-mechanical potentials can be used to perform a proper coupling between spin and lattice degrees of freedom. A symplectic numerical integration algorithm is then presented which combines the Suzuki–Trotter decomposition for non-commuting variables and conserves the geometric properties of the equations of motion. The numerical accuracy of the serial implementation was assessed by verifying that it conserves the total energy and the norm of the total magnetization up to second order in the timestep size. Finally, a very general parallel algorithm is proposed that allows large spin–lattice systems to be efficiently simulated on large numbers of processors without degrading its mathematical accuracy. Its correctness as well as scaling efficiency were tested for realistic coupled spin–lattice systems, confirming that the new parallel algorithm is both accurate and efficient.},
+  keywords = {Spin dynamics,Spin–lattice coupling,Symplecticity},
+  langid = {english}
 }
 
 @article{vanderstraetenTangentspaceMethodsUniform2019,
