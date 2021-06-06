@@ -115,7 +115,7 @@ models) however, in the physical sciences, they are of greater importance than
 facilitating glorified fitting procedures. In quantum chemistry, computational
 methods have been able to provide quantitative values (occasionally) at par with
 experimental methods, heralding the "third age of quantum chemistry"
-cite:schaeferMethyleneParadigmComputational1986.
+cite:richardsThirdAgeQuantum1979,schaeferMethyleneParadigmComputational1986,schaeferQuantumChemistryDevelopment1984.
 
 An often overlooked aspect of the modeling process, involves the numerical
 approximations and software implementation approaches to computational quantum
@@ -142,7 +142,61 @@ for obtaining ground state energies and observables from quantum systems.
 ** Quantum Chemistry
 Quantum chemistry as will be used in this report can be understood as the
 formulation of electronic structure problems for systems corresponding to real
-materials.
+materials. The starting point for such a discussion can be completely pragmatic,
+taking a classical Hamiltonian and "quantizing" it with the transform of the
+momentum. A slightly more rational explanation (following cite:yamaguchiNewDimensionQuantum1994) begins with writing the molecular
+non-relativistic Schrodinger equation.
+
+$$ \mathbf{H}𝛹=E𝛹 $$
+
+With the normal notation of $\mathbf{H}$ being the Hamiltonian operatior, $𝛹$ being the total wavefunction, and $E$ as the energy eigenvalue. For most calculations of interest in quantum chemistry we denote the time independent Hamiltonian operator in atomic units by:
+
+#+begin_export latex
+\begin{equation}
+\begin{multlined}
+\mathbf{H} = -\frac{1}{2} ∑ᵢⁿ∇ᵢ²-\frac{1}{2}∑_{A}ᴺ\frac{1}{M_{A}}∇_{A}^{2} - ∑ᵢⁿ∑_{A}ᴺ\frac{Z_{A}}{r_{iA}} \\
++ ∑_{i>j}ⁿ\frac{1}{r_{ij}}+∑_{{A>B}}ᴺ\frac{Z_{A}Z_{B}}{R_{AB}}
+\end{multlined}
+\end{equation}
+#+end_export
+
+which is written out for $n$ electrons and $N$ nuclei with $∇²$ representing the
+Laplacian operator. Electrons have indices $i$ and $j$ while each nucleus is
+denoted by $A$ or $B$ with the second index deployed to prevent double counting an interaction. $M_{A}$ is the mass ratio of the nucleus to the electron,
+$Z_{A}$ is the atomic number of nucleus $A$ and $r$ represents the distance,
+where the lower indices clarify the objects between which the distance is being
+measured.
+
+This is often understood as being the sum of terms, namely (in order) the kinetic energy of the electrons, the kinetic energy of the nuclei and the potential energy contributions of nuclear-electronic, electronic, and nuclear interactions.
+
+While details may be found in the standard literature cite:lewarsComputationalChemistry2016,cramerEssentialsComputationalChemistry2004,jensenIntroductionComputationalChemistry2017,szaboModernQuantumChemistry1996, typical approximations
+involve being able to consider the nuclei to be "clamped" (the Born-Oppenheimer
+assumption) and the adiabatic assumption which assumes that the resultant energy
+surface can be described in terms of one electron operators. This allows us separate the nuclear (constant at a fixed geometry) and the electronic parts of the Hamiltonian as cite:schaeferQuantumChemistryDevelopment1984:
+
+#+begin_export latex
+\begin{equation}
+\begin{multlined}
+\mathbf{H}_{elec} = ∑ᵢⁿ\mathbf{h}(i) + ∑_{{i>j}}ⁿ\frac{1}{r_{{ij}}} \\
+E_{total} = E_{elec} + ∑_{A>B}ᴺ\frac{Z_{A}Z_{B}}{R_{AB}}
+\end{multlined}
+\end{equation}
+#+end_export
+
+Where we have used the one electron operator $\mathbf{h}(i)$:
+
+$$ \mathbf{h}(i) = \frac{1}{2}∇ᵢ²-∑_{A}ᴺ\frac{Z_{A}}{r_{iA}} $$
+
+Relativistic effects and the Dirac equation are not considered
+here, though they are known to account for anomalous observations in systems
+with heavy elements (e.g. group 12 dimethyl metal-carbon bond lengths, p block
+ionization energy trends etc.) cite:dyallIntroductionRelativisticQuantum2007.
+
+The essential feature of quantum chemistry is the potential energy surface, a
+hypersurface which is defined by the potential energy of atoms over all possible
+arrangements cite:cramerEssentialsComputationalChemistry2004. Describing this surface efficiently (a sampling problem) and subsequently forming (minimum energy) paths (a global
+optimization problem) are the bedrock of a large segment of quantum chemistry
+applications.
 
 ** Tensors
 The most well known applications of tensor methods in the context of quantum
