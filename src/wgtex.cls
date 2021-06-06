@@ -92,21 +92,19 @@ backend=biber]{biblatex}
 \setmainfont{baskervaldx}
 
 % Asana
-\setmathfont[%
-	Path = Fonts/AsanaMath/,%
-	Extension = .otf,%
-  StylisticSet=1%
-]{Asana-Math}
+\fontspec{asana-math}
+\defaultfontfeatures+{StylisticSet=1}
+\setmathfont{asana-math}
 
 % Cascadia Code PL
-\setmonofont[%
-	Path = Fonts/Cascadia/,%
-	Extension = .otf,%
-	UprightFont = *-Regular,%
-	ItalicFont = *Italic-Italic,%
-	BoldFont = *-Bold,%
-	BoldItalicFont = *Italic-BoldItalic%
-]{CascadiaCodePL}
+% \setmonofont[%
+% 	Path = Fonts/Cascadia/,%
+% 	Extension = .otf,%
+% 	UprightFont = *-Regular,%
+% 	ItalicFont = *Italic-Italic,%
+% 	BoldFont = *-Bold,%
+% 	BoldItalicFont = *Italic-BoldItalic%
+% ]{CascadiaCodePL}
 
 \addtokomafont{part}{\normalfont\scshape\bfseries}
 \addtokomafont{chapter}{\normalfont\bfseries}
