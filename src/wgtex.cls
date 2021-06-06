@@ -86,22 +86,34 @@ backend=biber]{biblatex}
 \RequirePackage{avant} % Use the Avantgarde font for headings
 \RequirePackage[scaled]{helvet}
 \RequirePackage{unicode-math}
-\setmainfont[Ligatures=NoRequired,Numbers=OldStyle,SmallCapsFeatures={LetterSpace=6}]{Baskervaldx}
+% Baskerville variant
+\setmainfont[%
+	Path = Fonts/Baskervaldx/,%
+	Extension = .otf,%
+  UprightFont = *-Reg,%
+	ItalicFont = *-Ita,%
+	BoldFont = *-Bol,%
+	BoldItalicFont = *-BolIta,%
+  Ligatures=NoRequired,%
+  Numbers=OldStyle,%
+  SmallCapsFeatures={LetterSpace=6}%
+]{Baskervaldx}
+
 % Asana
-\setmathfont[
-	Path = Fonts/AsanaMath/,
-  StylisticSet=1,
-	Extension = .otf
+\setmathfont[%
+	Path = Fonts/AsanaMath/,%
+	Extension = .otf,%
+  StylisticSet=1%
 ]{Asana-Math}
 
 % Cascadia Code PL
-\setmonofont[
-	Path = Fonts/Cascadia/,
-	Extension = .otf,
-	UprightFont = *-Regular,
-	ItalicFont = *Italic-Italic,
-	BoldFont = *-Bold,
-	BoldItalicFont = *Italic-BoldItalic
+\setmonofont[%
+	Path = Fonts/Cascadia/,%
+	Extension = .otf,%
+	UprightFont = *-Regular,%
+	ItalicFont = *Italic-Italic,%
+	BoldFont = *-Bold,%
+	BoldItalicFont = *Italic-BoldItalic%
 ]{CascadiaCodePL}
 
 \addtokomafont{part}{\normalfont\scshape\bfseries}
