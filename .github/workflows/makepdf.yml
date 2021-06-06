@@ -18,7 +18,7 @@ jobs:
       - name: Install package
         run: |
           sudo apt-get install -y python-pygments emacs \
-          texlive texlive-science texlive-xetex latexmk \
+          texlive-full texlive-science texlive-xetex latexmk \
           texlive-bibtex-extra biber
 
       - name: Generate TeX
