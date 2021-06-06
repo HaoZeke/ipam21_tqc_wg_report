@@ -87,16 +87,9 @@ backend=biber]{biblatex}
 \RequirePackage[scaled]{helvet}
 \RequirePackage{unicode-math}
 % Baskerville variant
-\setmainfont[Path = Fonts/Baskervaldx/,%
-	Extension = .otf,%
-  UprightFont = *-Reg,%
-	ItalicFont = *-Ita,%
-	BoldFont = *-Bol,%
-	BoldItalicFont = *-BolIta,%
-  Ligatures=NoRequired,%
-  Numbers=OldStyle,%
-  SmallCapsFeatures={LetterSpace=6}%
-]{Baskervaldx}
+\fontspec{baskervaldx}
+\defaultfontfeatures+{SmallCapsFeatures={LetterSpace=6},Ligatures=NoRequired,Numbers={OldStyle,Proportional}}
+\setmainfont{baskervaldx}
 
 % Asana
 \setmathfont[%

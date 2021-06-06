@@ -45,6 +45,8 @@ tlmgr install   \
   lmodern       \
   minted        \
   texliveonfly  \
+  baskervaldx   \
+  collection-fontsrecommended \
   beamertheme-metropolis \
   amsmath
 
