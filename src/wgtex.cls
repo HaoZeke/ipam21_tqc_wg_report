@@ -91,8 +91,8 @@ backend=biber]{biblatex}
 \defaultfontfeatures+{SmallCapsFeatures={LetterSpace=6},Ligatures=NoRequired,Numbers={OldStyle,Proportional}}
 \setmainfont{baskervaldx}
 
-% % Asana
-% \setmathfont{Asana-Math.otf}
+% Asana
+\setmathfont{Asana-Math}
 
 % % Cascadia Code PL
 % \setmonofont{cascadia-code}
