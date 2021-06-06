@@ -19,14 +19,6 @@ jobs:
         run: |
           sudo apt-get install -y python-pygments emacs
 
-      - name: Setup LaTeX
-        run: |
-          scripts/getTexLive.sh $(pwd)/scripts/texlive.profile
-
-      - name: Generate TeX
-        run: |
-          emacs -q -nl --script scripts/org2tex.el src/wgtqc.org
-
       - name: Cache texlive
         uses: actions/cache@v2
         id: cache-texlive
@@ -35,6 +27,16 @@ jobs:
             ~/texmf
             /tmp/texlive/
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
+      - name: Setup LaTeX
+        run: |
+          export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
+          export PATH=$HOME/texmf/bin:$PATH
+          scripts/getTexLive.sh $(pwd)/scripts/texlive.profile
+
+      - name: Generate TeX
+        run: |
+          emacs -q -nl --script scripts/org2tex.el src/wgtqc.org
 
       - name: Build pdf
         run: |
