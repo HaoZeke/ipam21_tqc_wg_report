@@ -46,7 +46,8 @@ tlmgr install   \
   minted        \
   texliveonfly  \
   baskervaldx   \
-  collection-fontsrecommended \
+  asana-math    \
+  cascadia-code \
   beamertheme-metropolis \
   amsmath
 
