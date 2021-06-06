@@ -17,19 +17,18 @@ jobs:
 
       - name: Install package
         run: |
-          sudo apt-get install -y python-pygments emacs
+          sudo apt-get install -y python-pygments emacs \
+          texlive texlive-science texlive-xetex latexmk \
+          texlive-bibtex-extra biber
 
       - name: Generate TeX
         run: |
           emacs -q -nl --script scripts/org2tex.el src/wgtqc.org
 
       - name: Build pdf
-        uses: xu-cheng/latex-action@v2
-        with:
-          working_directory: src
-          root_file: wgtqc.tex
-          latexmk_use_xelatex: true
-          latexmk_shell_escape: true
+        run: |
+          cd src/
+          latexmk -pdfxe -shell-escape wgtqc.tex -f
 
       - name: Move pdf
         run: |
