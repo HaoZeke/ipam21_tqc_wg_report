@@ -145,19 +145,27 @@ formulation of electronic structure problems for systems corresponding to real
 materials. The starting point for such a discussion can be completely pragmatic,
 taking a classical Hamiltonian and "quantizing" it with the transform of the
 momentum. A slightly more rational explanation (following cite:yamaguchiNewDimensionQuantum1994) begins with writing the molecular
-non-relativistic Schrodinger equation.
+non-relativistic Schrödinger equation.
 
-$$ \mathbf{H}𝛹=E𝛹 $$
+#+begin_export latex
+\begin{equationB}[Molecular Non-relativistic Schrödinger]
+\begin{equation}
+\mathbf{H}𝛹=E𝛹
+\end{equation}
+\end{equationB}
+#+end_export
 
 With the normal notation of $\mathbf{H}$ being the Hamiltonian operatior, $𝛹$ being the total wavefunction, and $E$ as the energy eigenvalue. For most calculations of interest in quantum chemistry we denote the time independent Hamiltonian operator in atomic units by:
 
 #+begin_export latex
+\begin{equationB}[Non-relativistic time independent Hamiltonian]
 \begin{equation}
 \begin{multlined}
 \mathbf{H} = -\frac{1}{2} ∑ᵢⁿ∇ᵢ²-\frac{1}{2}∑_{A}ᴺ\frac{1}{M_{A}}∇_{A}^{2} - ∑ᵢⁿ∑_{A}ᴺ\frac{Z_{A}}{r_{iA}} \\
 + ∑_{i>j}ⁿ\frac{1}{r_{ij}}+∑_{{A>B}}ᴺ\frac{Z_{A}Z_{B}}{R_{AB}}
 \end{multlined}
 \end{equation}
+\end{equationB}
 #+end_export
 
 which is written out for $n$ electrons and $N$ nuclei with $∇²$ representing the
@@ -175,17 +183,25 @@ assumption) and the adiabatic assumption which assumes that the resultant energy
 surface can be described in terms of one electron operators. This allows us separate the nuclear (constant at a fixed geometry) and the electronic parts of the Hamiltonian as cite:schaeferQuantumChemistryDevelopment1984:
 
 #+begin_export latex
+\begin{equationB}[Total energy in terms of the electronic Hamiltonian]
 \begin{equation}
 \begin{multlined}
 \mathbf{H}_{elec} = ∑ᵢⁿ\mathbf{h}(i) + ∑_{{i>j}}ⁿ\frac{1}{r_{{ij}}} \\
 E_{total} = E_{elec} + ∑_{A>B}ᴺ\frac{Z_{A}Z_{B}}{R_{AB}}
 \end{multlined}
 \end{equation}
+\end{equationB}
 #+end_export
 
 Where we have used the one electron operator $\mathbf{h}(i)$:
 
-$$ \mathbf{h}(i) = \frac{1}{2}∇ᵢ²-∑_{A}ᴺ\frac{Z_{A}}{r_{iA}} $$
+#+begin_export latex
+\begin{equationB}[One electron operator]
+\begin{equation}
+\mathbf{h}(i) = \frac{1}{2}∇ᵢ²-∑_{A}ᴺ\frac{Z_{A}}{r_{iA}}
+\end{equation}
+\end{equationB}
+#+end_export
 
 Relativistic effects and the Dirac equation are not considered
 here, though they are known to account for anomalous observations in systems
@@ -198,6 +214,7 @@ arrangements cite:cramerEssentialsComputationalChemistry2004. Describing this su
 optimization problem) are the bedrock of a large segment of quantum chemistry
 applications.
 
+*** Solutions
 ** Tensors
 The most well known applications of tensor methods in the context of quantum
 chemistry have traditionally been cite:chanDensityMatrixRenormalization2011
