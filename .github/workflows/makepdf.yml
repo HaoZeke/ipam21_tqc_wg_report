@@ -33,7 +33,7 @@ jobs:
         with:
           path: |
             ~/texmf
-            /tmp/texlive/bin/x86_64-linux
+            /tmp/texlive/
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 
       - name: Build pdf
