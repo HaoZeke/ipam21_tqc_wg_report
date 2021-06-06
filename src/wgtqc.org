@@ -214,11 +214,17 @@ hypersurface which is defined by the potential energy of atoms over all possible
 arrangements cite:cramerEssentialsComputationalChemistry2004. Describing this surface efficiently (a sampling problem) and subsequently forming (minimum energy) paths (a global
 optimization problem) are the bedrock of a large segment of quantum chemistry
 applications.
-
 *** Solutions
+Methods of solving the equations described can be divided into the standard two
+forms of treating partial differential equations numerically, that is by
+considering a real space grid and mesh-less methods. In quantum chemistry, the
+mesh-less methods are more common compared to the gird methods, however, for
+tensor applications textcite:khoromskaiaTensorNumericalMethods2018 demonstrate
+the superiority of using grids.
+
+For an understanding of the mesh-free methods we consider the typical example of
+the Hydrogen molecule.
 ** Tensors
-The most well known applications of tensor methods in the context of quantum
-chemistry have traditionally been cite:chanDensityMatrixRenormalization2011
 # ** Basics
 # #+begin_export latex
 # \lipsum[2-3]
@@ -241,11 +247,24 @@ chemistry have traditionally been cite:chanDensityMatrixRenormalization2011
 # #+end_export
 * Implementations
 ** Algorithms
+*** DMRG
+The most well known applications of tensor methods in the context of quantum
+chemistry have traditionally been in the context of replacing full CI
+calculations with DMRG cite:chanDensityMatrixRenormalization2011.
 ** Languages and DSLs
-The idea of forming programming languages which maximally combine expert knowledge with performance oriented low level code is the basis of rationalizing the existence of Domain Specific Languages (DSLs).
-It is not really that these ideas are new, but they suffer from bitrot over time. BLOCK is now meant to be used as a black box, and the source is not distributed on Github; similarly, the Quantum Chemistry version of CTF, aquarius has also suffered from a lack of development. CTF is reasonably well developed, but it has fallen behind in terms of speed compared to the later stage libraries like the tensorflow accelerated opt einsum
+The idea of forming programming languages which maximally combine expert
+knowledge with performance oriented low level code is the basis of rationalizing
+the existence of Domain Specific Languages (DSLs). It is not really that these
+ideas are new cite:solomonikSparseTensorAlgebra2015, but they suffer from bitrot
+over time. BLOCK is now meant to be used as a black box, and the source is not
+distributed on Github; similarly, the Quantum Chemistry version of the [[https://solomon2.web.engr.illinois.edu/ctf/index.html#interface][cyclops
+tensor framework]] (CTF) cite:solomonikMassivelyParallelTensor2014, [[https://github.com/devinamatthews/aquarius][Aquarius]]
+cite:solomonikMassivelyParallelTensor2014 has also suffered from a lack of
+development. CTF cite:levyDistributedMemoryDMRGSparse2020 is reasonably well
+developed, but it has fallen behind in terms of speed compared to the later
+stage libraries like the tensorflow accelerated opt einsum.
 ** Quantum Chemistry Software
-Quantum chemistry has suffered for many years as a retarded child of computer science in terms of the communal adoption of closed source tools which can be traced back to the original sin of Gaussian going closed source. Lately, there has been a slight re calibration of the community’s moral compass in a positive sense, and several previously closed source packages have become open-source (e.g. the GAP potentials, d-SEAMS, lammps, gromacs).
+Quantum chemistry has suffered for many years as a retarded child of computer science in terms of the communal adoption of closed source tools which can be traced back to the original sin of Gaussian going closed source. Lately, there has been a slight re calibration of the community’s moral compass in a positive sense, and several previously closed source packages have become open-source (e.g. the GAP potentials, d-SEAMS, LAMMPS, GROMACS, PSI4).
 *** Tensor Implementations
 ** Tensor Libraries
 ** High Performance Computing Considerations
