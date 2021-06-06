@@ -27,6 +27,15 @@ jobs:
         run: |
           emacs -q -nl --script scripts/org2tex.el src/wgtqc.org
 
+      - name: Cache texlive
+        uses: actions/cache@v2
+        id: cache-texlive
+        with:
+          path: |
+            ~/texmf
+            /tmp/texlive/bin/x86_64-linux
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
       - name: Build pdf
         run: |
           export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
