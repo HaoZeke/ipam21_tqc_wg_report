@@ -1,0 +1,300 @@
+#+TITLE: Tensors in Quantum Chemistry
+#+SUBTITLE: WG Report and Discussion
+#+AUTHOR: Rohit Goswami
+# I need the footnotes to be inlined
+#+STARTUP: fninline
+#+EXCLUDE_TAGS: noexport
+
+#+BEGIN_SRC emacs-lisp :exports none :eval always
+(require 'ox-extra)
+(ox-extras-activate '(ignore-headlines))
+#+END_SRC
+
+* Configuration :ignoreheading:ignore:
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
+# Kanged from https://gitlab.com/oer/oer-reveal/blob/master/org/config.org
+# Also https://gitlab.com/oer/emacs-reveal-howto/-/blob/master/howto.org
+** General Options :ignoreheading:ignore:
+# No Table of contents, no section numbers
+#+OPTIONS: toc:nil num:nil
+
+# Enable smart quotes
+#+OPTIONS: ':t
+** RevealJS Options :ignoreheading:ignore:
+
+# Enable: browser history, fragment IDs in URLs, mouse wheel, links between presentations
+#+OPTIONS: reveal_history:t reveal_fragmentinurl:t
+#+OPTIONS: reveal_mousewheel:t reveal_inter_presentation_links:t
+
+# Disable separate PDF pages for each fragment.  Just use one per slide.
+#+OPTIONS: reveal_pdfseparatefragments:nil
+
+# Display notes on separate page for PDF export.
+#+REVEAL_EXPORT_NOTES_TO_PDF: separate-page
+
+# Transition styles: none/fade/slide/convex/concave/zoom/cube
+#+REVEAL_TRANS: fade
+# Set a base theme, then override
+#+REVEAL_THEME: white
+#+REVEAL_EXTRA_CSS: /Users/rohitgoswami/.config/doom/revealExtras/robot-lung.css
+#+REVEAL_EXTRA_CSS: /Users/rohitgoswami/.config/doom/revealExtras/oerFragments.css
+#+REVEAL_MARGIN: 0.2
+#+REVEAL_PREAMBLE: <div class="line top"></div> <div class="line bottom"></div> <div class="line left"></div> <div class="line right"></div>
+
+#+REVEAL_PLUGINS: (notes search zoom)
+# The following variables are non-standard.
+# Do not display TOC-progress on title slide.
+
+#+REVEAL_TITLE_SLIDE_STATE: no-toc-progress
+# Do not display TOC-progress on TOC slide.
+#+REVEAL_TOC_SLIDE_STATE: no-toc-progress
+# Do not include TOC slide in TOC-progress.
+#+REVEAL_TOC_SLIDE_CLASS: no-toc-progress
+# Use different heading for TOC.
+#+REVEAL_TOC_SLIDE_TITLE: Agenda
+
+** External Resources :ignoreheading:ignore:
+# Note that doom-emacs sets this variable
+# https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/org/contrib/present.el
+#+REVEAL_EXTRA_CSS: /Users/rohitgoswami/.emacs.d/.local/straight/build-28.0.50/revealjs/plugin/accessibility/helper.css
+#+REVEAL_EXTRA_CSS: /Users/rohitgoswami/.emacs.d/.local/straight/build-28.0.50/revealjs/plugin/toc-progress/toc-progress.css
+#+REVEAL_EXTRA_CSS: /Users/rohitgoswami/.emacs.d/.local/straight/build-28.0.50/revealjs/dist/theme/toc-style.css
+#+REVEAL_EXTRA_CSS: /Users/rohitgoswami/.emacs.d/.local/straight/build-28.0.50/revealjs/dist/theme/fonts/source-sans-pro/source-sans-pro.css
+
+# Allow to selectively hide links.
+#+REVEAL_EXTRA_SCRIPTS: ("/Users/rohitgoswami/.emacs.d/.local/straight/build-28.0.50/revealjs/dist/theme/hidelinks.js")
+
+# The following creates an empty footer, for which the css style defines
+# a height that agrees with the TOC-progress footer’s height.
+# In this way, the footer’s height is taken into account by reveal.js’s
+# size calculations.
+#+REVEAL_SLIDE_FOOTER: <br>
+#+OPTIONS: reveal_toc_footer:t
+
+** Macros :ignoreheading:ignore:
+# Set a default bib file.
+
+# Macros to display square brackets (in texts of hyperlinks).
+# Based on: https://emacs.stackexchange.com/questions/7792/can-i-make-links-in-org-mode-that-contain-brackets-or
+# Square Bracket Open [
+#+MACRO: BO @@latex:\char91{}@@@@html:&#91;@@
+# Square Bracket Close ]
+#+MACRO: BC @@latex:\char93{}@@@@html:&#93;@@
+
+# Macro for forced line break, e.g., in titles.
+#+MACRO: BR @@latex:\\@@@@html:<br />@@
+
+# Macro to generate abbr element in HTML.  If a second argument is given, it
+# defines the title attribute.  For LaTeX, output first attribute as is and
+# ignore second one.
+#+MACRO: abbr (eval (concat "@@latex:" Minims in Quantum Chemistry "@@@@html:<abbr" (if (< 0 (length Truisms regarding Tensors and QC)) (concat " title=\"" Truisms regarding Tensors and QC "\"") "") ">" Minims in Quantum Chemistry "</abbr>@@"))
+
+# Macros to display code in different colors.
+#+MACRO: blackcode (eval (format "@@html:<code><span style=\"color:black; font-size:smaller;\">%s</span></code>@@ @@latex:\\verb|%s|@@" (org-html-encode-plain-text Minims in Quantum Chemistry) Minims in Quantum Chemistry))
+#+MACRO: redcode (eval (format "@@html:<code><span style=\"color:darkred; font-size:smaller;\">%s</span></code>@@ @@latex:\\rverb|%s|@@" (org-html-encode-plain-text Minims in Quantum Chemistry) Minims in Quantum Chemistry))
+#+MACRO: greencode (eval (format "@@html:<code><span style=\"color:darkgreen; font-size:smaller;\">%s</span></code>@@ @@latex:\\gverb|%s|@@" (org-html-encode-plain-text Minims in Quantum Chemistry) Minims in Quantum Chemistry))
+#+MACRO: bluecode (eval (format "@@html:<code><span style=\"color:darkblue; font-size:smaller;\">%s</span></code>@@ @@latex:\\bverb|%s|@@" (org-html-encode-plain-text Minims in Quantum Chemistry) Minims in Quantum Chemistry))
+
+** LaTeX Options :ignoreheading:ignore:
+# Setup for PDF generation via LaTeX export.
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \usepackage[backend=biber,style=alphabetic]{biblatex}
+#+LATEX_HEADER: \addbibresource{./../src/ipam21tqc.bib}
+#+LATEX_HEADER: \newenvironment{notes}{\par\footnotesize}{\par}
+#+LATEX_HEADER: \newenvironment{NOTES}{\par\footnotesize}{\par}
+#+LATEX_HEADER: \newenvironment{leftcol}{\begin{minipage}{.49\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \newenvironment{rightcol}{\begin{minipage}{.49\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \newenvironment{leftcol30}{\begin{minipage}{.29\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \newenvironment{leftcol40}{\begin{minipage}{.39\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \newenvironment{leftcol60}{\begin{minipage}{.59\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \newenvironment{leftcol70}{\begin{minipage}{.69\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \newenvironment{rightcol30}{\begin{minipage}{.29\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \newenvironment{rightcol40}{\begin{minipage}{.39\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \newenvironment{rightcol60}{\begin{minipage}{.59\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \newenvironment{rightcol70}{\begin{minipage}{.69\textwidth}}{\end{minipage}}
+#+LATEX_HEADER: \usepackage{newunicodechar}
+#+LATEX_HEADER: \newunicodechar{≈}{$\approx$}
+#+LATEX_HEADER: \newunicodechar{⋮}{\vdots}
+#+LATEX_HEADER: \newunicodechar{ }{~}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \definecolor{darkred}{rgb}{0.3, 0.0, 0.0}
+#+LATEX_HEADER: \definecolor{darkgreen}{rgb}{0.0, 0.3, 0.1}
+#+LATEX_HEADER: \definecolor{darkblue}{rgb}{0.0, 0.1, 0.3}
+#+LATEX_HEADER: \definecolor{darkorange}{rgb}{1.0, 0.55, 0.0}
+#+LATEX_HEADER: \definecolor{sienna}{rgb}{0.53, 0.18, 0.09}
+#+LATEX_HEADER: \hypersetup{colorlinks,linkcolor=darkblue,citecolor=darkblue,urlcolor=darkgreen}
+#+LATEX_HEADER: \usepackage{newverbs}
+#+LATEX_HEADER: \newverbcommand{\rverb}{\color{darkred}}{}
+#+LATEX_HEADER: \newverbcommand{\gverb}{\color{darkgreen}}{}
+#+LATEX_HEADER: \newverbcommand{\bverb}{\color{darkblue}}{}
+
+* Start Here :ignoreheading:ignore:
+* Brief Introduction
+** Hello!
+- Find me here: https://rgoswami.me
+- Who?
+  + *Rohit Goswami* MInstP
+    - Doctoral Researcher, University of Iceland, Faculty of Physical Sciences
+#+begin_leftcol
+[[file:images/physUoI.png]]
+file:images/ipamLogo.png
+#+end_leftcol
+#+begin_rightcol
+file:images/rannisLogo.png
+#+DOWNLOADED: screenshot @ 2021-04-13 02:55:57
+#+ATTR_HTML: :width 70% :height 70%
+[[file:images/Hello!/2021-04-13_02-55-57_screenshot.png]]
+#+end_rightcol
+** Logistics
+#+ATTR_REVEAL: :frag appear
+- All contents are [[https://github.com/HaoZeke/haozeke.github.io/tree/src/presentations/ipam21tmqc][hosted on GitHub]]
+#+ATTR_REVEAL: :frag appear
+- [[https://github.com/HaoZeke/ipam21_tqc_wg_report/][Working group report]] in ~/src~
+#+ATTR_REVEAL: :frag appear
+  + Please contribute!
+* Basic Quantum chemistry workflow
+#+ATTR_REVEAL: :frag appear
+#+begin_leftcol
+*Generic Steps*
+- Electronic Repulsion Integrals
+- Hartree Fock
+- Integral Transform
+- Correlations
+- Properties
+#+end_leftcol
+#+ATTR_REVEAL: :frag appear
+#+begin_rightcol
+*Algorithmic choices*
+- McMurchie–Davidson (MD), Head-Gordon–Pople (HGP) etc.
+- Integral driven, sparse, Cholesky
+- Distributed, partial/full
+- Tensor methods, Pulay mixing, etc.
+- Numerical / Analytical derivatives etc.
+#+end_rightcol
+#+ATTR_REVEAL: :frag appear
+e.g. DALTON provides octopoles but does not implement some of the potentials and gradients required
+* Practical Usage
+** ORCA
+#+ATTR_REVEAL: :frag appear
+#+begin_leftcol
+- Is free but not open source cite:neeseORCAQuantumChemistry2020a
+#+begin_src tcl
+!UHF 3-21G opt normalprint
+
+*xyz 0 1
+H     -8.04246    1.90586   -0.16160
+H     -8.15433    2.68055    0.61127
+*
+#+end_src
+#+begin_src tcl
+! SV def2/JK RI-JK conv
+! moread
+%maxcore 4000
+%moinp "cas_10.gbw" # converged
+ # cas(13,10) calculation with the
+ # double shell ranging
+ # from 68-72 (t2g orbitals first)
+%casscf nel 13
+ norb 13 # or 15 if
+# the full second d-shell is included
+ mult 4,2
+ nroots 10,9
+ etol 1e-6 # default = 1e-7
+ cistep ice # approximate CI
+# for large active spaces
+end
+,*xyzfile -3 4 crcl6_03.xyz
+#+end_src
+#+end_leftcol
+#+ATTR_REVEAL: :frag appear
+#+begin_rightcol
+- 2285 lines of output
+- ~25s
+
+#+DOWNLOADED: screenshot @ 2021-06-07 13:15:10
+[[file:images/ORCA/2021-06-07_13-15-10_screenshot.png]]
+#+end_rightcol
+* Practicalities
+** A spreadsheet
+*** Horrifying
+** Workflow managers
+*** PyIron
+*** Wailord
+** Reproducibility
+*** AiiDA
+*** Nix
+* Practical Tensor Libraries
+** Cyclops Tensor Framework
+- Good design
+  - Used in Aquarius cite:solomonikMassivelyParallelTensor2014
+* Tensors in Quantum Chemistry
+** NWChem Code
+- Uses a tensor contraction engine
+  - Code generator
+** MATLAB Codes
+- Described in cite:khoromskaiaTensorNumericalMethods2018
+** Aquarius
+- Introduced with CTF
+- Not actively developed
+- 10x more concise code (e.g. ~ccsd~)
+  - compared ~psi4~
+* Scalability
+** HPC and Streaming
+- HiParTI and NWChemEx
+* Solutions
+** Domain Specific Languages
+*** Chapel
+** Against Blackboxes
+#+ATTR_REVEAL: :frag appear
+- The gold standard is a series of "blackbox" method currently
+#+ATTR_REVEAL: :frag appear
+- ~qcschema~ is meant to standardize inputs
+  + as is ~escdf~ (1D storage)
+#+ATTR_REVEAL: :frag appear
+- ~cclib~ is meant for output extraction
+#+ATTR_REVEAL: :frag appear
+- Electronic structure library
+  + PEXI
+  + ~libxc~ (now with Maple) and ~libvdwxc~
+  + ~matrixswitch~ --> should be a candidate for conversion
+* QC Compilers
+** Intermediate Representations
+- LLVM but for QC
+** ASR and Tensors
+- From the Abstract syntax tree
+- Optimizations can be called from tensor backends
+- Flexibility is a known benefit
+- Chapel is a good example
+* Conclusions
+** Outlook
+#+ATTR_REVEAL: :frag appear
+- Quantum chemistry has a "goldilocks" problem
+  - ~libxc~ and friends at one end
+  - ~numpy~ and ~python~ wrappers at the other
+#+ATTR_REVEAL: :frag appear
+- Implementations in the literature are opaque
+  - Lots of wasted effort
+#+ATTR_REVEAL: :frag appear
+- Implementations in code are simplified and opaque
+  - Lowered incentives for understanding
+
+* The End
+** Bibliography
+:PROPERTIES:
+:CUSTOM_ID: bibliography
+:END:
+
+printbibliography:../src/ipam21tqc.bib
+
+** Thanks!
+:PROPERTIES:
+:reveal_background: #005ab6
+:END:
+
+# Local Variables:
+# indent-tabs-mode: nil
+# org-src-preserve-indentation: t
+# End:
