@@ -379,7 +379,7 @@ to specialized hardware.
 ** Quantum Chemistry Software
 Quantum chemistry has suffered for many years as a retarded child of computer
 science in terms of the communal adoption of closed source tools which can be
-traced back to the original sin of Gaussian becoming closed source. Lately,
+traced back to the original sin of Gaussian becoming closed source cite:gilesSoftwareCompanyBans2004. Lately,
 there has been a slight re calibration of the community’s moral compass in a
 positive sense, and several previously closed source packages have become
 open-source (e.g. the GAP potentials). The veritable zoo of software
