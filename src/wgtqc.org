@@ -421,11 +421,30 @@ Primarily, the working group focused on the following:
 - and the unique (virtual) circumstances under which the IPAM program involved
 workflows towards the mitigation of the same.
 
+It was hoped that a standard library could begin to be established, similar to the [[https://hpx-docs.stellar-group.org/branches/master/singlehtml/index.html][HPX committee]] cite:kaiserHPXStandardLibrary2020.
 ** Outlook
-The purpose of outlining a grand unifying plan is to encourage the community to partake in its eventual success. We emphasize that the time has passed for disparate groups to struggle in closed source developments. Inclusive authorship like the NWChem paper is a laudable and achievable goal as a community. The recent successes of for-profit companies like Google and their ilk in academic arenas should further serve as a wake-up call; it is only in their ability to connect working scientists of various disciplines have their successes been assured.
-GPAW holds monthly developer meetings, Stan likewise has developer hours, as do DeepChem and some other; however, these are still currently few and far apart. Contrary to some beliefs, these have not diluted the ability of the steering groups nor swamped the communities with frivolous demands. Recently, even the Fortran steering committee has opened a public forum (in the form of the J3 proposals repository) to bring more of the community into the decision making process. Computational chemistry, once one of the early adopters of the net has fallen behind, and it can only be hoped that programs like those held at IPAM will be able to stem the flow of bad practices and secrecy.
+The purpose of outlining a grand unifying plan is to encourage the community to
+partake in its eventual success. We emphasize that the time has passed for
+disparate groups to struggle in closed source developments. Inclusive authorship
+like the NWChem paper is a laudable and achievable goal as a community. The
+recent successes of for-profit companies like Google and their ilk in academic
+arenas should further serve as a wake-up call; it is only in their ability to
+connect working scientists of various disciplines have their successes been
+assured.  GPAW holds monthly developer meetings, Stan likewise has developer
+hours, as do DeepChem and some other; however, these are still currently few and
+far apart. Contrary to some beliefs, these have not diluted the ability of the
+steering groups nor swamped the communities with frivolous demands. Recently,
+even the Fortran steering committee has opened a public forum (in the form of
+the J3 proposals repository) to bring more of the community into the decision
+making process. Computational chemistry, once one of the early adopters of the
+net has fallen behind, and it can only be hoped that programs like those held at
+IPAM will be able to stem the flow of bad practices and secrecy.
 
-DMRG, ALS, these are bulletproof, concrete ideas, which need to be merged with the nebulous lexicon of quantum chemistry. Many avenues are unexplored, relativistic qc, electrostatics. Outlook, they're powerful, expressive tools which need to be coerced into the qc lexicon for efficient use.
+Tensor algorithms are well defined within their niches and have seen successes
+on data which is traditionally part of quantum chemistry. However, they need to
+be merged with the nebulous lexicon of quantum chemistry. Many avenues are
+unexplored, relativistic qc, electrostatics. Outlook, they're powerful,
+expressive tools which need to be coerced into the qc lexicon for efficient use.
 
 * Bibliography :ignoreheading:ignore:
 #+BEGIN_EXPORT latex
