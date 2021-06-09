@@ -421,19 +421,28 @@ Tensor contraction, a.k.a. tensor-times-tensor or mode-$(\{n\},\{m\})$ product~\
 \end{equation}
 where $\{n\}$ and $\{m\}$ are tensor modes to do contraction.
 
-Multiple challenges exist to enhance the performance of tensor contractions.
-\emph{High computing power needed to compute these contractions.}
+Multiple challenges exist to enhance the performance of tensor contractions even on the most powerful supercomputers.
+
+\emph{Challenge 1: High computing power needed to compute these contractions.}
 A tensor contraction could easily goes to very high computation complexity. 
-Give two $N^{th}$-order cubic tensors to be contracted on $M$ dimensions with dimension size $I$ needs $\mathcal{O}(I^{2N-M})$ floating-point operations (Flops).
+Given two $N^{th}$-order cubic tensors to be contracted on $M$ dimensions with dimension size $I$ needs $\mathcal{O}(I^{2N-M})$ floating-point operations (Flops).
 When $N$ is in a high order, with even $I$ is mild, then the floating-point operations could be reach to a very large number.
 For example, $10^18$ Flops for two fifth-order tensors contracted on 1 dimension, with all dimension sizes as $100$.
 This high computation is challenging to solve on a single computer. Besides, it is only one tensor contraction, where in quantum chemistry, we could easily use tens or hundreds of contractions together.
+The traditional solution is deploying the problem on a supercomputer or cluster to parallelize the computation.
 
-\emph{Huge space is required to run these contractions in memory.}
+\emph{Challenge 2: Huge space is required to run these contractions in memory.}
+Beyond the high computation power, tensor contractions are also expensive in memory usage. 
+The storage usage of two input tensors plus the output tensors all grows exponentially with tensor order $N$. 
+Say an $NA^{th}$ tensor $\T{X} \in \mathbb{R}^{I \times I \dots \times I}$, then the storage needed is $\mathcal{O}(I^{N})$.
+Though the storage value is smaller than the number of Flops, it still consumes non-trivial space.
+For the same fifth-order tensor with all dimension sizes as $100$, its storage size is $\mathcal{O}(10^{10})$, easily larger than the memory size of a single computer.
+A traditional solution is distributed computing using supercomputers or clusters. 
+While recent research develops techniques~\cite{liu2021athena,liu2021sparta} to leverage new memory technologies, such as the new Intel Optane DC persistent memory~\cite{izraelevitz2019basic}. 
 
-\emph{Parallelized on distributed memory systems meet the scalability issue.}
+\emph{Challenge 3: Parallelized on distributed memory systems meet the scalability issue.}
 
-\emph{Sparsity, adopted in tensor contractions to reduce computing requirements, needs good algorithms and data structures to achieve high performance.}
+\emph{Challenge 4: Sparsity, adopted in tensor contractions to reduce computing requirements, needs good algorithms and data structures to achieve high performance.}
 The two sparse tensor contraction (SpTC) still lacks sufficient research, especially with element-/pair-wise sparsity.
 
 #+end_export
