@@ -14,7 +14,6 @@
 
 ;;; Code:
 
-(require 'ox-latex)
 ; Getting org-ref
 ;; MELPA setup and initial packages
 (require 'package)
@@ -23,6 +22,7 @@
 (package-initialize)
 (unless package-archive-contents   (package-refresh-contents))
 (package-install 'use-package)
+(package-install 'org)
 
 (dolist (package '(use-package))
    (unless (package-installed-p package)
@@ -30,6 +30,8 @@
 
 (use-package org-ref
    :ensure t)
+
+(require 'ox-latex)
 ;; Got org-ref
 (add-to-list 'org-latex-classes
              '("wgtex" "\\documentclass{wgtex}"
