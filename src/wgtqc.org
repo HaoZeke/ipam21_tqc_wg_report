@@ -340,12 +340,6 @@ will have consequences discussed in a later section.
 # ** Basics
 # #+begin_export latex
 # \lipsum[2-3]
-Tensors, representing multi-dimensional arrays, are one fundamental data representation in HPC applications.
-We use different fonts for tensors ($\T{X} \in \R^{I \times J \times K}$), matrices ($\M{A} \in \R^{I \times J}$), and vectors ($\V{x} \in \R^I$) in this paper following the work~\cite{Kolda:2009:survey}.
-We assume an $N$th-order sparse tensor $\T{X} \in \R^{I_1 \times I_2 \times \dots \times I_N}$ with \nnz nonzeros in the subsequent context. 
-\emph{Matricization} reshapes or folds all the elements of a tensor with at least order 3 into an equivalent matrix~\cite{Kolda:2009:survey}. 
-For example, mode-$1$ matricization of a tensor $\T{X} \in \R^{3 \times 4 \times 5}$ would result in a matrix $\M{X}_{(1)} \in \R^{3 \times 20}$.
-A \emph{slice} is a two-dimensional cross-section of a tensor, obtained by fixing all indices but two, e.g., $\M{S}_{::k} = \T{X}(:,:,k)$; A \emph{fiber} is a vector extracted from a tensor along a certain mode, selected by fixing all indices but one, e.g., $\V{f}_{:jk} = \T{X}(:,j,k)$. 
 # #+end_export
 
 # Now we can test some code:
@@ -412,6 +406,8 @@ these tools do not typically work in an interchangeable manner at the level of
 theory. Most quantum chemistry codes work in a pidgin syntax which
 
 ** High Performance Computing Considerations
+Tensor methods are popular in quantum chemistry as we have aforementioned, where one of the most important computational kernels is tensor contraction.
+
 * Conclusions
 ** Goals and Outputs
 Given the scope defined in Section [[Scope]] and the asynchronous nature of the program, the goals were set in accordance to their discussion in the report.
