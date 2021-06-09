@@ -409,19 +409,20 @@ theory. Most quantum chemistry codes work in a pidgin syntax which
 
 ** High Performance Computing Considerations
 
+#+begin_export latex
+
 Tensor methods are popular in quantum chemistry as we have aforementioned, where one of the most important computational kernels is tensor contraction.
-Tensor contraction, a high-order product between two tensors along with their common dimensions, which is the foundation for a spectrum of applications, such as quantum chemistry, quantum physics and deep learning cite:fishman2020itensor,koppl2016parallel,riplinger2016sparse,li2019faster,roberts2019tensornetwork,apra2020nwchem.
+Tensor contraction, a high-order product between two tensors along with their common dimensions, which is the foundation for a spectrum of applications, such as quantum chemistry, quantum physics and deep learning~\cite{fishman2020itensor,koppl2016parallel,riplinger2016sparse,li2019faster,roberts2019tensornetwork,apra2020nwchem}.
 
 Tensor contraction, a.k.a. tensor-times-tensor or mode-\\$(\{n\},\{m\})$ product~\cite{Cichocki:2014:survey}, is an extension of matrix multiplication, denoted by 
 \begin{equation}
 \T{Z} = \T{X} \times_{\{n\}}^{\{m\}} \T{Y},
 \end{equation}
 where $\{n\}$ and $\{m\}$ are tensor modes to do contraction.
+
 Nevertheless, the two sparse tensor contraction (SpTC) still lacks sufficient research, especially with element-/pair-wise sparsity.
 
-# #+begin_export latex
-# \lipsum[2-3]
-# #+end_export
+#+end_export
 
 * Conclusions
 ** Goals and Outputs
