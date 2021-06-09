@@ -1,6 +1,6 @@
 #+TITLE: Tensor Methods in Quantum Chemistry
 #+SUBTITLE: An IPAM 2021 working group report
-#+AUTHOR: Rohit Goswami
+#+AUTHOR: Rohit Goswami, Jiajia Li
 #+OPTIONS: toc:t \n:nil enable-local-variables:t
 #+STARTUP: fninline
 #+EXCLUDE_TAGS: noexport
@@ -377,7 +377,7 @@ tensor framework]] (CTF) cite:solomonikMassivelyParallelTensor2014, [[https://gi
 cite:solomonikMassivelyParallelTensor2014 has also suffered from a lack of
 development. CTF cite:levyDistributedMemoryDMRGSparse2020 is reasonably well
 developed, but it has fallen behind in terms of speed compared to the later
-stage libraries [[https://optimized-einsum.readthedocs.io/en/stable/][opt_einsum]] which can take advantage of dispatching efficiently
+stage libraries [[https://optimized-einsum.readthedocs.io/en/stable/][opt-einsum]] which can take advantage of dispatching efficiently
 to specialized hardware.
 ** Quantum Chemistry Software
 Quantum chemistry has suffered for many years as a retarded child of computer
@@ -410,54 +410,80 @@ theory. Most quantum chemistry codes work in a pidgin syntax which
 
 ** High Performance Computing Considerations
 
-#+begin_export latex
 
 Tensor methods are popular in quantum chemistry as we have aforementioned, where one of the most important computational kernels is tensor contraction.
-Tensor contraction, a high-order product between two tensors along with their common dimensions, which is the foundation for a spectrum of applications, such as quantum chemistry, quantum physics and deep learning~\cite{fishman2020itensor,koppl2016parallel,riplinger2016sparse,li2019faster,roberts2019tensornetwork,apra2020nwchem}.
+Tensor contraction, a high-order product between two tensors along with their common dimensions, which is the foundation for a spectrum of applications, such as quantum chemistry, quantum physics and deep learning cite:fishman2020itensor,koppl2016parallel,riplinger2016sparse,li2019faster,roberts2019tensornetwork,apra2020nwchem.
 Usually, a sequence (could be hundreds) of tensor contractions are used in these applications.
-Tensor contraction, a.k.a. tensor-times-tensor or mode-$(\{n\},\{m\})$ product~\cite{Cichocki:2014:survey}, is an extension of matrix multiplication, denoted by 
+Tensor contraction, a.k.a. tensor-times-tensor or mode-$(\{n\},\{m\})$ product cite:Cichocki:2014:survey, is an extension of matrix multiplication, denoted by 
+#+begin_export latex
+\begin{equationB}[Tensor product]
 \begin{equation}
 \T{Z} = \T{X} \times_{\{n\}}^{\{m\}} \T{Y},
 \end{equation}
+\end{equationB}
+#+end_export
 where $\{n\}$ and $\{m\}$ are tensor modes to do contraction.
 
 Multiple challenges exist to enhance the performance of tensor contractions even on the most powerful supercomputers.
+*** Challenges
+**** *High computing power needed to compute these contractions*
 
-\emph{Challenge 1: High computing power needed to compute these contractions.}
-A tensor contraction could easily goes to very high computation complexity. 
-Given two $N^{th}$-order cubic tensors to be contracted on $M$ dimensions with dimension size $I$ needs $\mathcal{O}(I^{2N-M})$ floating-point operations (Flops).
-When $N$ is in a high order, with even $I$ is mild, then the floating-point operations could be reach to a very large number.
-For example, $10^18$ Flops for two fifth-order tensors contracted on 1 dimension, with all dimension sizes as $100$.
-This high computation is challenging to solve on a single computer. Besides, it is only one tensor contraction, where in quantum chemistry, we could easily use tens or hundreds of contractions together.
-The traditional solution is deploying the problem on a supercomputer or cluster to parallelize the computation.
+A tensor contraction could easily goes to very high computation complexity.
+Given two $N^{th}$ -order cubic tensors to be contracted on $M$ dimensions with
+dimension size $I$ needs $\mathcal{O}(I^{2N-M})$ floating-point operations
+(Flops). When $N$ is in a high order, with even $I$ is mild, then the
+floating-point operations could be reach to a very large number. For example,
+$10^18$ Flops for two fifth-order tensors contracted on 1 dimension, with all
+dimension sizes as $100$. This high computation is challenging to solve on a
+single computer. Besides, it is only one tensor contraction, where in quantum
+chemistry, we could easily use tens or hundreds of contractions together. The
+traditional solution is deploying the problem on a supercomputer or cluster to
+parallelize the computation.
 
+**** *Huge space is required to run these contractions in memory*
 
-\emph{Challenge 2: Huge space is required to run these contractions in memory.}
-Beyond the high computation power, tensor contractions are also expensive in memory usage. 
-The storage usage of two input tensors plus the output tensors all grows exponentially with tensor order $N$. 
-Say an $NA^{th}$ tensor $\T{X} \in \mathbb{R}^{I \times I \dots \times I}$, then the storage needed is $\mathcal{O}(I^{N})$.
-Though the storage value is smaller than the number of Flops, it still consumes non-trivial space.
-For the same fifth-order tensor with all dimension sizes as $100$, its storage size is $\mathcal{O}(10^{10})$, easily larger than the memory size of a single computer.
-A traditional solution is distributed computing using supercomputers or clusters. 
-While recent research develops techniques~\cite{liu2021athena,liu2021sparta} to leverage new memory technologies, such as the new Intel Optane DC persistent memory~\cite{izraelevitz2019basic}. 
+Beyond the high computation power, tensor contractions are also expensive in
+memory usage.  The storage usage of two input tensors plus the output tensors
+all grows exponentially with tensor order $N$. Say an $NA^{th}$ tensor $\T{X}
+\in \mathbb{R}^{I \times I \dots \times I}$, then the storage needed is
+$\mathcal{O}(I^{N})$. Though the storage value is smaller than the number of
+Flops, it still consumes non-trivial space. For the same fifth-order tensor
+with all dimension sizes as $100$, its storage size is $\mathcal{O}(10^{10})$,
+easily larger than the memory size of a single computer. A traditional solution
+is distributed computing using supercomputers or clusters. While recent
+research develops techniques cite:liu2021athena,liu2021sparta to leverage new
+memory technologies, such as the new Intel Optane DC persistent memory
+cite:izraelevitz2019basic. 
 
+**** *Parallelized on distributed memory systems meet the scalability issue*
 
-\emph{Challenge 3: Parallelized on distributed memory systems meet the scalability issue.}
-However, the traditional distributed computing solution for the high computation and memory demands does not work ideally.
-Deploying an algorithm on distributed computers generally need communications among computing nodes to update shared data, synchronize the execution, etc.
-Thus, the communication overhead could be a big portion of the total parallel execution time especially on a large supercomputers with hundreds or thousands of computing nodes.
-There is a tradeoff between how much memory could be locally used on each single computing node and how many nodes to deploy/parallelize the contraction algorithm.
-Some recent research put their effort on using GPUs~\cite{kim2019code,kim2018optimizing}.
+However, the traditional distributed computing solution for the high computation
+and memory demands does not work ideally.  Deploying an algorithm on distributed
+computers generally need communications among computing nodes to update shared
+data, synchronize the execution, etc.  Thus, the communication overhead could be
+a big portion of the total parallel execution time especially on a large
+supercomputers with hundreds or thousands of computing nodes.  There is a
+tradeoff between how much memory could be locally used on each single computing
+node and how many nodes to deploy/parallelize the contraction algorithm.  Some
+recent research put their effort on using GPUs
+cite:kim2019code,kim2018optimizing.
 
+**** *Sparsity, adopted in tensor contractions to reduce computing requirements, needs good algorithms and data structures to achieve high performance*
 
-\emph{Challenge 4: Sparsity, adopted in tensor contractions to reduce computing requirements, needs good algorithms and data structures to achieve high performance.}
-To overcome the first two challenges, another approach to reduce computation and communication challenges is exploring sparsity in tensors.
-There have been research on exploiting dense block-pairs of the two input tensors, and then do multiplication by calling dense BLAS linear algebra and have the output tensor pre-allocated using domain knowledge or a symbolic phase~\cite{kats2013sparse,peng2016massively,ozog2013inspector,sivkov2019dbcsr,herault2020distributed}, such as libtensor~\cite{manzer2017general,epifanovsky2013new}, TiledArray~\cite{peng2016massively}, and Cyclops Tensor Framework~\cite{levy2020distributed}.
-Despite the element/pair-wise sparsity could compress the tensor effectively, while the two sparse tensor contraction (SpTC) algorithm, emerged from recent quantum chemistry research~\cite{mutlu2019toward,hartono2009performance}, still lacks sufficient research to be efficient.
-Some recent efforts have been put in this direction as initial efforts~\cite{liu2021athena,liu2021sparta}, but the challenges still need to be better resolved.
-
-
-#+end_export
+To overcome the first two challenges, another approach to reduce computation and
+communication challenges is exploring sparsity in tensors.  There have been
+research on exploiting dense block-pairs of the two input tensors, and then do
+multiplication by calling dense BLAS linear algebra and have the output tensor
+pre-allocated using domain knowledge or a symbolic phase
+cite:kats2013sparse,peng2016massively,ozog2013inspector,sivkov2019dbcsr,herault2020distributed,
+such as libtensor cite:manzer2017general,epifanovsky2013new, TiledArray
+cite:peng2016massively, and Cyclops Tensor Framework cite:levy2020distributed.
+Despite the element/pair-wise sparsity could compress the tensor effectively,
+while the two sparse tensor contraction (SpTC) algorithm, emerged from recent
+quantum chemistry research cite:mutlu2019toward,hartono2009performance, still
+lacks sufficient research to be efficient.  Some recent efforts have been put in
+this direction as initial efforts cite:liu2021athena,liu2021sparta, but the
+challenges still need to be better resolved.
 
 * Conclusions
 ** Goals and Outputs
