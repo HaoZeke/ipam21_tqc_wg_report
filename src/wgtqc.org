@@ -431,6 +431,7 @@ For example, $10^18$ Flops for two fifth-order tensors contracted on 1 dimension
 This high computation is challenging to solve on a single computer. Besides, it is only one tensor contraction, where in quantum chemistry, we could easily use tens or hundreds of contractions together.
 The traditional solution is deploying the problem on a supercomputer or cluster to parallelize the computation.
 
+
 \emph{Challenge 2: Huge space is required to run these contractions in memory.}
 Beyond the high computation power, tensor contractions are also expensive in memory usage. 
 The storage usage of two input tensors plus the output tensors all grows exponentially with tensor order $N$. 
@@ -440,10 +441,21 @@ For the same fifth-order tensor with all dimension sizes as $100$, its storage s
 A traditional solution is distributed computing using supercomputers or clusters. 
 While recent research develops techniques~\cite{liu2021athena,liu2021sparta} to leverage new memory technologies, such as the new Intel Optane DC persistent memory~\cite{izraelevitz2019basic}. 
 
+
 \emph{Challenge 3: Parallelized on distributed memory systems meet the scalability issue.}
+However, the traditional distributed computing solution for the high computation and memory demands does not work ideally.
+Deploying an algorithm on distributed computers generally need communications among computing nodes to update shared data, synchronize the execution, etc.
+Thus, the communication overhead could be a big portion of the total parallel execution time especially on a large supercomputers with hundreds or thousands of computing nodes.
+There is a tradeoff between how much memory could be locally used on each single computing node and how many nodes to deploy/parallelize the contraction algorithm.
+Some recent research put their effort on using GPUs~\cite{kim2019code,kim2018optimizing}.
+
 
 \emph{Challenge 4: Sparsity, adopted in tensor contractions to reduce computing requirements, needs good algorithms and data structures to achieve high performance.}
-The two sparse tensor contraction (SpTC) still lacks sufficient research, especially with element-/pair-wise sparsity.
+To overcome the first two challenges, another approach to reduce computation and communication challenges is exploring sparsity in tensors.
+There have been research on exploiting dense block-pairs of the two input tensors, and then do multiplication by calling dense BLAS linear algebra and have the output tensor pre-allocated using domain knowledge or a symbolic phase~\cite{kats2013sparse,peng2016massively,ozog2013inspector,sivkov2019dbcsr,herault2020distributed}, such as libtensor~\cite{manzer2017general,epifanovsky2013new}, TiledArray~\cite{peng2016massively}, and Cyclops Tensor Framework~\cite{levy2020distributed}.
+Despite the element/pair-wise sparsity could compress the tensor effectively, while the two sparse tensor contraction (SpTC) algorithm, emerged from recent quantum chemistry research~\cite{mutlu2019toward,hartono2009performance}, still lacks sufficient research to be efficient.
+Some recent efforts have been put in this direction as initial efforts~\cite{liu2021athena,liu2021sparta}, but the challenges still need to be better resolved.
+
 
 #+end_export
 
