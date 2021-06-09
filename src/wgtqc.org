@@ -52,6 +52,7 @@
 #+LATEX_HEADER: \setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
 #+LATEX_HEADER: \usepackage{wrapfig}
 #+LATEX_HEADER: \usepackage[font={small}]{caption}
+#+LATEX_HEADER: \NewDocumentCommand \T { O{} m } {\ensuremath{\boldsymbol{#1\mathscr{\MakeUppercase{#2}}}}}
 
 ** Cover Page :ignoreheading:ignore:
 # From https://tex.stackexchange.com/questions/101157/how-to-create-this-cover-page
@@ -357,6 +358,8 @@ will have consequences discussed in a later section.
 # \label{eq:sllg}
 # \end{equationB}
 # #+end_export
+
+
 * Implementations
 ** Algorithms
 *** DMRG
@@ -406,6 +409,27 @@ these tools do not typically work in an interchangeable manner at the level of
 theory. Most quantum chemistry codes work in a pidgin syntax which
 
 ** High Performance Computing Considerations
+
+#+begin_export latex
+
+Tensor methods are popular in quantum chemistry as we have aforementioned, where one of the most important computational kernels is tensor contraction.
+Tensor contraction, a high-order product between two tensors along with their common dimensions, which is the foundation for a spectrum of applications, such as quantum chemistry, quantum physics and deep learning~\cite{fishman2020itensor,koppl2016parallel,riplinger2016sparse,li2019faster,roberts2019tensornetwork,apra2020nwchem}.
+Usually, a sequence (could be hundreds) of tensor contractions are used in these applications.
+Tensor contraction, a.k.a. tensor-times-tensor or mode-\\$(\{n\},\{m\})$ product~\cite{Cichocki:2014:survey}, is an extension of matrix multiplication, denoted by 
+\begin{equation}
+\T{Z} = \T{X} \times_{\{n\}}^{\{m\}} \T{Y},
+\end{equation}
+where $\{n\}$ and $\{m\}$ are tensor modes to do contraction.
+
+Multiple challenges exist to enhance the performance of tensor contractions.
+\begin{itemize}
+  \item 
+\end{itemize}
+
+Nevertheless, the two sparse tensor contraction (SpTC) still lacks sufficient research, especially with element-/pair-wise sparsity.
+
+#+end_export
+
 * Conclusions
 ** Goals and Outputs
 Given the scope defined in Section [[Scope]] and the asynchronous nature of the program, the goals were set in accordance to their discussion in the report.
