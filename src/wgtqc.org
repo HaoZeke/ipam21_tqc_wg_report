@@ -139,7 +139,35 @@ implementation. As a relevant example, alternating least squares, used for
 recommendation systems in the data-science literature shares much of its core
 (numerical) concepts with the density matrix renormalization group method used
 for obtaining ground state energies and observables from quantum systems.
+*** Second Quantization
+Most of the quantum chemistry literature
+cite:szaboModernQuantumChemistry1996,cramerEssentialsComputationalChemistry2004,jensenIntroductionComputationalChemistry2017
+(cite:helgakerMolecularElectronicstructureTheory2000 is an exception) is
+formulated in terms of wavefunctions, and with little reference to the discretized
+second quantization formulation. Tensor networks and their studies pertaining to
+the physical sciences are typically described in terms of the second
+quantization formalism. This has bleed into the code structures as well, which
+will have consequences discussed in a later section.
+**** Density Matrix Renormalization Group
+The most well known applications of tensor methods in the context of quantum
+chemistry have traditionally been in the context of replacing full CI
+calculations with DMRG cite:chanDensityMatrixRenormalization2011.
 
+This is a variant of Wilson's NRG method with a non-energy optimal approach to
+truncating the resultant space.
+*** Goals
+Primarily, the working group focused on the following:
+- Reconciliation of concepts between disciplines
+  - Cross pollination of gainful concepts
+- Understanding code structures and implementation methods
+  - Scalability, interoperability with mathematical models, and documentation
+  - Performance bottlenecks
+  - Programming language considerations
+- Identification of future directions and current challenges
+- and the unique (virtual) circumstances under which the IPAM program involved
+workflows towards the mitigation of the same.
+
+It was hoped that a standard library could begin to be established, similar to the [[https://hpx-docs.stellar-group.org/branches/master/singlehtml/index.html][HPX committee]] cite:kaiserHPXStandardLibrary2020.
 ** Quantum Chemistry
 Quantum chemistry as will be used in this report can be understood as the
 formulation of electronic structure problems for systems corresponding to real
@@ -328,16 +356,7 @@ corrections to the basic wavefunction exist in the literature (coupled cluster
 methods cite:lewarsComputationalChemistry2016,szaboModernQuantumChemistry1996, cluster perturbation series cite:baudinClusterPerturbationTheory2019), and readers are referred to the
 literature cite:jensenIntroductionComputationalChemistry2017 for details and
 strict equivalence relations with CI methods.
-*** Second Quantization
-Most of the quantum chemistry literature
-cite:szaboModernQuantumChemistry1996,cramerEssentialsComputationalChemistry2004,jensenIntroductionComputationalChemistry2017
-(cite:helgakerMolecularElectronicstructureTheory2000 is an exception) is
-formulated in terms of wavefunctions, and with little reference to the discretized
-second quantization formulation. Tensor networks and their studies pertaining to
-the physical sciences are typically described in terms of the second
-quantization formalism. This has bleed into the code structures as well, which
-will have consequences discussed in a later section.
-** Tensors
+# ** Tensors
 # ** Basics
 # #+begin_export latex
 # \lipsum[2-3]
@@ -358,14 +377,7 @@ will have consequences discussed in a later section.
 # \label{eq:sllg}
 # \end{equationB}
 # #+end_export
-
-
 * Implementations
-** Algorithms
-*** DMRG
-The most well known applications of tensor methods in the context of quantum
-chemistry have traditionally been in the context of replacing full CI
-calculations with DMRG cite:chanDensityMatrixRenormalization2011.
 ** Languages and DSLs
 The idea of forming programming languages which maximally combine expert
 knowledge with performance oriented low level code is the basis of rationalizing
@@ -379,7 +391,7 @@ development. CTF cite:levyDistributedMemoryDMRGSparse2020 is reasonably well
 developed, but it has fallen behind in terms of speed compared to the later
 stage libraries [[https://optimized-einsum.readthedocs.io/en/stable/][opt-einsum]] which can take advantage of dispatching efficiently
 to specialized hardware.
-** Quantum Chemistry Software
+*** Quantum Chemistry Software
 Quantum chemistry has suffered for many years as a retarded child of computer
 science in terms of the communal adoption of closed source tools which can be
 traced back to the original sin of Gaussian becoming closed source cite:gilesSoftwareCompanyBans2004. Lately,
@@ -406,8 +418,8 @@ cite:enkovaaraElectronicStructureCalculations2010,dohnGridBasedProjectorAugmente
 
 The crux of these tools is to maximally enable user-interactivity. However,
 these tools do not typically work in an interchangeable manner at the level of
-theory. Most quantum chemistry codes work in a pidgin syntax which
-
+theory. Most quantum chemistry codes work in a pidgin syntax which can only be
+understood in the context of their own manuals.
 ** High Performance Computing Considerations
 
 
@@ -486,21 +498,6 @@ this direction as initial efforts cite:liu2021athena,liu2021sparta, but the
 challenges still need to be better resolved.
 
 * Conclusions
-** Goals and Outputs
-Given the scope defined in Section [[Scope]] and the asynchronous nature of the program, the goals were set in accordance to their discussion in the report.
-*** Goals
-Primarily, the working group focused on the following:
-- Reconciliation of concepts between disciplines
-  - Cross pollination of gainful concepts
-- Understanding code structures and implementation methods
-  - Scalability, interoperability with mathematical models, and documentation
-  - Performance bottlenecks
-  - Programming language considerations
-- Identification of future directions and current challenges
-- and the unique (virtual) circumstances under which the IPAM program involved
-workflows towards the mitigation of the same.
-
-It was hoped that a standard library could begin to be established, similar to the [[https://hpx-docs.stellar-group.org/branches/master/singlehtml/index.html][HPX committee]] cite:kaiserHPXStandardLibrary2020.
 ** Outlook
 The purpose of outlining a grand unifying plan is to encourage the community to
 partake in its eventual success. We emphasize that the time has passed for
